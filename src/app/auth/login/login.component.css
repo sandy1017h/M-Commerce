@@ -1,0 +1,180 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    height: 100vh;
+    background-color: #fdfdfd;
+	width: 100% !important;
+}
+
+.login-container {
+    display: flex;
+    width: 100% !important;
+    height: 100vh !important;
+    overflow: hidden;
+    /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); */
+}
+
+/* Left Panel */
+.left-panel {
+    flex: 1;
+    background: url('https://images.unsplash.com/photo-1665686310429-ee43624978fa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+    background-size: cover;
+}
+
+/* Right Panel */
+.right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: tra;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.welcome-title {
+    font-size: 2rem;
+    color: #ff0055;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.welcome-subtitle {
+    font-size: 1rem;
+    color: #666666;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signup-link {
+    color: #ff0055;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+.form-field {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 3px solid #594051;
+    font-size: 1rem;
+    background: transparent;
+}
+
+.forgot-link {
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #ff0055;
+    text-decoration: none;
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(to right, #ff0055, #ff7a00);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.login-button:hover {
+    background: #ff3d00;
+}
+
+.or-section {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-button {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+
+
+.social-button.google {
+    background-color: #4285f4;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.social-button.google:hover {
+    background-color: #357ae8;
+}
+
+.social-button i {
+    font-size: 1.2rem;
+}
+button.login-button.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+.example-container mat-form-field + mat-form-field {
+	margin-left: 8px;
+  }
+  
+  .example-right-align {
+	text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+	display: none;
+  }
+  
+  input.example-right-align {
+	-moz-appearance: textfield;
+  }
+  ::ng-deep .mat-mdc-form-field-icon-suffix, [dir=rtl] .mat-mdc-form-field-icon-prefix {
+    padding: 0 0 0 4px;
+    margin-right: 2px !important;
+}
