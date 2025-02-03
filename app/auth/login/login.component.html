@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<body>
+
+	<div class="login-container">
+		<!-- Left Section -->
+		<div class="left-panel"></div>
+
+		<!-- Right Section -->
+		<div class="right-panel">
+			<div class="form-container">
+				<h1 class="welcome-title">Welcome Back!</h1>
+				<p class="welcome-subtitle">
+					Don't have an account? <a href="/register" class="signup-link">Sign Up</a>
+				</p>
+
+				<form class="login-form" [formGroup]="loginForm" (ngSubmit)="Login()">
+					<div>
+						<mat-form-field style="width: 100%;" appearance="outline" class="custom-mat-form-field w-100">
+							<mat-label>Email Address</mat-label>
+							<input
+								matInput
+								type="email"
+								placeholder="Email Address"
+								formControlName="email"
+								(blur)="onBlurEmail('email')"
+								required
+							/>
+						</mat-form-field>
+						<div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+							<span class="error-message" *ngIf="loginForm.get('email')?.errors?.['required']">
+								Email is required.
+							</span>
+							<span class="error-message" *ngIf="loginForm.get('email')?.errors?.['email']">
+								Invalid email address.
+							</span>
+						</div>
+					</div>
+					
+
+					<div>
+						<mat-form-field style="width: 100%;" appearance="outline" class="custom-mat-form-field w-100">
+							<mat-label>Password</mat-label>
+							<input
+								matInput
+								[type]="hide() ? 'password' : 'text'" 
+								placeholder="Password"
+								formControlName="password"
+								(blur)="onBlurPassword('password')"
+								required
+							/>
+							<button class="border-0"
+							mat-icon-button
+							matSuffix
+							(click)="clickEvent($event)"
+							[attr.aria-label]="'Hide password'"
+							[attr.aria-pressed]="hide()"
+						  >
+							<mat-icon class="bg-white">{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+						  </button>
+						</mat-form-field>
+						<div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+							<span class="error-message" *ngIf="loginForm.get('password')?.errors?.['required']">
+								Password is required.
+							</span>
+						</div>
+					</div>
+
+					<button type="submit" class="login-button"  [disabled]="loginForm.invalid"
+					[class.disabled]="loginForm.invalid">
+						<span class="button__text">Sign In</span>
+						<i class="button__icon fas fa-chevron-right"></i>
+					</button>
+
+					<div class="or-section">
+						<p>OR</p>
+					</div>
+
+					<div class="social-buttons">
+						<button class="social-button google" type="button">
+							<i class="fab fa-google"></i> Sign in with Google
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>

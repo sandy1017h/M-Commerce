@@ -1,0 +1,120 @@
+<body>
+    <div class="login-container">
+        <!-- Left Section -->
+        <div class="left-panel"></div>
+
+        <!-- Right Section -->
+        <div class="right-panel">
+            <div class="form-container">
+                <h1 class="welcome-title">Create an Account!</h1>
+                <p class="welcome-subtitle">
+                    Already have an account? <a href="/login" class="signup-link">Log In</a>
+                </p>
+
+				<form class="login-form" [formGroup]="RegistrationForm" (ngSubmit)="Register()">
+					<!-- Username Field -->
+					<div>
+						<mat-form-field style="width: 100%;" appearance="outline" class="custom-mat-form-field w-100">
+							<mat-label>User Name</mat-label>
+							<input
+								matInput
+								type="text"
+								placeholder="User Name"
+								formControlName="userName"
+								required
+							/>
+						</mat-form-field>
+						<div *ngIf="RegistrationForm.get('userName')?.invalid && (RegistrationForm.get('userName')?.dirty || RegistrationForm.get('userName')?.touched)">
+							<span class="error-message" *ngIf="RegistrationForm.get('userName')?.errors?.['required']">
+								User Name is required.
+							</span>
+						</div>
+					</div>
+				
+					<!-- Email Field -->
+					<div>
+						<mat-form-field style="width: 100%;" appearance="outline" class="custom-mat-form-field w-100">
+							<mat-label>Email Address</mat-label>
+							<input
+								matInput
+								type="email"
+								placeholder="Email Address"
+								formControlName="email"
+								required
+							/>
+						</mat-form-field>
+						<div *ngIf="RegistrationForm.get('email')?.invalid && (RegistrationForm.get('email')?.dirty || RegistrationForm.get('email')?.touched)">
+							<span class="error-message" *ngIf="RegistrationForm.get('email')?.errors?.['required']">
+								Email is required.
+							</span>
+							<span class="error-message" *ngIf="RegistrationForm.get('email')?.errors?.['email']">
+								Invalid email.
+							</span>
+						</div>
+					</div>
+				
+					<!-- Password Field -->
+					<div>
+						<mat-form-field style="width: 100%;" appearance="outline" class="custom-mat-form-field w-100">
+							<mat-label>Password</mat-label>
+							<input
+								matInput
+								[type]="hidePassword ? 'password' : 'text'"
+								placeholder="Password"
+								formControlName="password"
+								required
+							/>
+							<button
+								mat-icon-button
+								matSuffix
+								(click)="hidePassword = !hidePassword"
+								[attr.aria-label]="hidePassword ? 'Show password' : 'Hide password'"
+							>
+								<mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+							</button>
+						</mat-form-field>
+						<div *ngIf="RegistrationForm.get('password')?.invalid && (RegistrationForm.get('password')?.dirty || RegistrationForm.get('password')?.touched)">
+							<span class="error-message" *ngIf="RegistrationForm.get('password')?.errors?.['required']">
+								Password is required.
+							</span>
+						</div>
+					</div>
+				
+					<!-- Confirm Password Field -->
+					<div>
+						<mat-form-field style="width: 100%;" appearance="outline" class="custom-mat-form-field w-100">
+							<mat-label>Confirm Password</mat-label>
+							<input
+								matInput
+								[type]="hideConfirmPassword ? 'password' : 'text'"
+								placeholder="Confirm Password"
+								formControlName="confirmPassword"
+								required
+							/>
+							<button
+								mat-icon-button
+								matSuffix
+								(click)="hideConfirmPassword = !hideConfirmPassword"
+								[attr.aria-label]="hideConfirmPassword ? 'Show password' : 'Hide password'"
+							>
+								<mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+							</button>
+						</mat-form-field>
+						<div *ngIf="RegistrationForm.get('confirmPassword')?.invalid && (RegistrationForm.get('confirmPassword')?.dirty || RegistrationForm.get('confirmPassword')?.touched)">
+							<span class="error-message" *ngIf="RegistrationForm.get('confirmPassword')?.errors?.['passWordMismatch']">
+								Passwords do not match.
+							</span>
+						</div>
+					</div>
+				
+					<!-- Register Button -->
+					<button type="submit" class="login-button" [disabled]="RegistrationForm.invalid" [class.disabled]="RegistrationForm.invalid">
+						<span class="button__text">Sign Up</span>
+						<i class="button__icon fas fa-chevron-right"></i>
+					</button>
+				</form>
+				
+            </div>
+        </div>
+    </div>
+</body>
