@@ -10,8 +10,9 @@
 
 		<!-- Right Section -->
 		<div class="right-panel">
+			<p class="mit-online-text">MIT <span class="online">Online</span></p>
 			<div class="form-container">
-				<h1 class="welcome-title">Welcome Back!</h1>
+				<!-- <h1 class="welcome-title">Welcome Back!</h1> -->
 				<p class="welcome-subtitle">
 					Don't have an account? <a href="/register" class="signup-link">Sign Up</a>
 				</p>
@@ -20,16 +21,11 @@
 					<div>
 						<mat-form-field style="width: 100%;" appearance="outline" class="custom-mat-form-field w-100">
 							<mat-label>Email Address</mat-label>
-							<input
-								matInput
-								type="email"
-								placeholder="Email Address"
-								formControlName="email"
-								(blur)="onBlurEmail('email')"
-								required
-							/>
+							<input matInput type="email" placeholder="Email Address" formControlName="email"
+								(blur)="onBlurEmail('email')" required />
 						</mat-form-field>
-						<div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+						<div
+							*ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
 							<span class="error-message" *ngIf="loginForm.get('email')?.errors?.['required']">
 								Email is required.
 							</span>
@@ -38,38 +34,28 @@
 							</span>
 						</div>
 					</div>
-					
+
 
 					<div>
 						<mat-form-field style="width: 100%;" appearance="outline" class="custom-mat-form-field w-100">
 							<mat-label>Password</mat-label>
-							<input
-								matInput
-								[type]="hide() ? 'password' : 'text'" 
-								placeholder="Password"
-								formControlName="password"
-								(blur)="onBlurPassword('password')"
-								required
-							/>
-							<button class="border-0"
-							mat-icon-button
-							matSuffix
-							(click)="clickEvent($event)"
-							[attr.aria-label]="'Hide password'"
-							[attr.aria-pressed]="hide()"
-						  >
-							<mat-icon class="bg-white">{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-						  </button>
+							<input matInput [type]="hide() ? 'password' : 'text'" placeholder="Password"
+								formControlName="password" (blur)="onBlurPassword('password')" required />
+							<button class="border-0" mat-icon-button matSuffix (click)="clickEvent($event)"
+								[attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
+								<mat-icon class="bg-white">{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+							</button>
 						</mat-form-field>
-						<div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+						<div
+							*ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
 							<span class="error-message" *ngIf="loginForm.get('password')?.errors?.['required']">
 								Password is required.
 							</span>
 						</div>
 					</div>
 
-					<button type="submit" class="login-button"  [disabled]="loginForm.invalid"
-					[class.disabled]="loginForm.invalid">
+					<button type="submit" class="login-button" [disabled]="loginForm.invalid"
+						[class.disabled]="loginForm.invalid">
 						<span class="button__text">Sign In</span>
 						<i class="button__icon fas fa-chevron-right"></i>
 					</button>
@@ -78,11 +64,23 @@
 						<p>OR</p>
 					</div>
 
+
 					<div class="social-buttons">
 						<button class="social-button google" type="button">
-							<i class="fab fa-google"></i> Sign in with Google
+							<span class="google-logo">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24px" height="24px">
+									<path fill="#4285F4" d="M24 9.5c3.25 0 5.5 1.33 6.75 2.5l5-5C32.88 3.5 28.75 2 24 2 14.42 2 6.72 7.68 3.7 16h6.42c1.92-4.42 6.58-7 13.88-7z"/>
+									<path fill="#34A853" d="M9.88 28c-.56-1.7-.88-3.42-.88-6s.32-4.3.88-6H3.7C2.62 19 2 21 2 24s.62 5 1.7 8h6.18z"/>
+									<path fill="#FBBC05" d="M24 44c4.25 0 8-1.5 10.88-4l-5.88-4.58c-1.62 1.08-3.75 1.58-5 1.58-6.67 0-11.62-4.92-13.42-11.58H3.7c2.92 8.92 11.25 14.58 20.3 14.58z"/>
+									<path fill="#EA4335" d="M44 24c0-1.17-.1-2.33-.28-3.42H24v7h11.58c-.58 2.33-1.92 4.08-3.92 5.08l5.88 4.58C41.58 34 44 29.83 44 24z"/>
+									<path fill="none" d="M2 2h44v44H2z"/>
+								</svg>
+							</span>
+							<span>Sign in with Google</span>
 						</button>
 					</div>
+					
+					
 				</form>
 			</div>
 		</div>

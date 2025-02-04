@@ -1,8 +1,10 @@
+/* Navbar-header */
+
 .app-header {
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: rgb(255,246,244);
+  background-color: #f4f4f4;
   padding: 12px 20px;
   border-bottom: 1px solid #ddd;
   z-index: 1000;
@@ -43,6 +45,23 @@
   margin: 0;
 }
 
+.mit-online-text {
+  font-family: Arial, sans-serif;
+  font-size: 35px;
+  font-weight: bold;
+  color: #00bfff !important;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: inline;
+  text-decoration: underline;
+}
+
+.online {
+  color: #ff8c00;
+  font-style: italic;
+  text-align: center;
+  text-decoration: underline;
+}
+
 
 .nav-item .nav-link {
   text-decoration: none;
@@ -61,6 +80,47 @@
 .nav-item .nav-link:hover {
   color: var(--primary-color);
   text-decoration:dashed
+}
+
+/* From Uiverse.io by WhiteNervosa */ 
+.dtds {
+  font-size: 18px;
+  /* color: #e1e1e1; */
+  font-family: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  text-transform: uppercase;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+}
+
+.dtds:focus,
+.dtds:hover {
+  color: #72f10a;
+}
+
+.dtds:focus:after,
+.dtds:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.dtds:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #72f10a;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
 }
 
 
@@ -82,32 +142,35 @@
 }
 
 .search-bar:focus-within {
-  box-shadow: 0 0 8px rgba(29, 72, 40, 0.5); /* Adds an outline glow effect */
-  border-color: #1a7245; /* Darker green for focus */
+  box-shadow: 0 0 8px rgba(29, 72, 40, 0.5);
+  border-color: #1a7245;
 }
 
-/* Search Input */
+
 .search-input {
   border: none;
-  outline: none; /* Remove default outline */
+  outline: none;
   font-size: 0.9rem;
-  color: #1d4828;
   padding: 5px 10px;
   flex-grow: 1;
   width: 100%;
   background-color: transparent;
+  color: #1d4828 !important;
 }
 
 .search-input:focus {
-  outline: none; /* Keeps input focus within the parent */
+  outline: none;
 }
 
-/* Placeholder Text */
-.search-input::placeholder {
-  color: #9e9e9e;
+.improf {
+  width: 40px;
+  height: 40px;
+  /* flex-shrink: 0; */
+  border-radius: 50%;
+  margin-right: 10px; /* Adds space from the edge if needed */
+  object-fit: cover;
 }
 
-/* Search Button */
 .search-button {
   background: none;
   border: none;
@@ -129,7 +192,6 @@
 .header-btn-group {
   /* display: flex; */
   gap: 15px;
-
 }
 
 .header-btn-group button mat-icon {
@@ -177,12 +239,12 @@ nav{
   font-weight: 700;
 }
 .item-color a:hover{
-  background-color: #28539D ;
-  color: #fff !important;
+ 
+  color: #00c853 !important;
 }
 .item-color a:active{
-  background-color: #28539D ;
-  color: #fff !important;
+ 
+  color: #00c853 !important;
 }
 .sub-item-color{
   border-radius: 0 !important;
@@ -195,12 +257,12 @@ nav{
   font-size: 16px;
   font-weight: 400 !important;
 }
-.sub-item-color a:hover{
+/* .sub-item-color a:hover{
   background-color: #6B7386 !important;
 }
 .sub-item-color a:active{
   background-color: #6B7386 !important;
-}
+} */
 
 .nav-overflow{
   display: flex !important;
@@ -276,7 +338,7 @@ transition: transform 0.3s ease;
 }
 
 .nav-link .news-text {
-  font-size: 16px; /* Adjust font size as needed */
+  font-size: 12px;
 }
 
 
@@ -313,4 +375,16 @@ transition: transform 0.3s ease;
 a [class*=' icon-'],
 a [class^=icon-] {
  display: inline
+}
+@media screen and (min-width: 1200px) {
+  .content-width {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 1325px !important;
+  }
+}
+@media screen and (max-width: 991px) {
+  .collapse:not(.show) {
+      display: block !important;
+  }
 }
