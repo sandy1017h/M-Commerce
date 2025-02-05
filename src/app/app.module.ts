@@ -15,7 +15,7 @@ import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
+
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { BASE_API, BASE_IMAGE_API } from './core/token/baseUrl.token';
@@ -25,16 +25,21 @@ import { AuthIntercetorInterceptor } from './core/interceptor/auth-intercetor.in
 import { appInitializer } from './core/helper/app.initializer';
 import { AuthService } from './core/Services/auth.service';
 import { appEffects, appStore } from './redux/store';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CheckoutComponent,
+   
   ],
   imports: [
-    AuthModule,
+  
     BrowserModule,
+    AuthModule,
     AppRoutingModule,
     LayoutModule,
     BrowserAnimationsModule,

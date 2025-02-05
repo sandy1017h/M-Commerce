@@ -6,9 +6,9 @@
     <div class="container-fluid">
         <div class="row align-items-center">
             <!-- Logo -->
-            <div class="col-auto">
+            <div class="col-2">
                 <div class="app-icon d-flex align-items-center">
-                    <div class="apexcart-logo-container">
+                    <div class="apexcart-logo-container" >
                         <img src="https://i.ibb.co/LP9Jrqq/cart-image.png" alt="ApexCart Logo"
                             style="border-radius: 15px;" />
                         <h4 class="mit-online-text">MIT<span class="online">Online</span></h4>
@@ -17,9 +17,41 @@
             </div>
             <br>
 
-
+            <div class="col-md-6 flex-grow-1">
+                <div class="search-bar">
+                    <input type="search" class="search-input" placeholder="Search for Products Brands and more..."
+                        aria-label="Search" id="searchInput" />
+                    <button type="button" class="search-button">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2 d-flex gap-1">
+                <button routerLink="/login">
+                    Login
+                    <div class="arrow-wrapper">
+                        <div class="arrow"></div>
+                
+                    </div>
+                </button>
+                <button routerLink="/register">
+                    Sign up
+                    <div class="arrow-wrapper">
+                        <div class="arrow"></div>
+                
+                    </div>
+                </button>
+               
+            </div>
+            <div class="col-md-1 text-end">
+                <div class=" profile-container">
+                    <img class="improf" src="https://cdn-icons-png.flaticon.com/128/1177/1177568.png" alt="Profile Icon"
+                        style="cursor: pointer;" />
+                </div>
+            </div>
             <!-- Navbar -->
-            <div class="col-auto">
+            <!-- <div class="col-auto">
                 <nav class="navbar">
                     <ul class="navbar-nav d-flex flex-row justify-content-between align-items-center w-100">
                         <div class="d-flex flex-row">
@@ -39,32 +71,25 @@
                                 <a class="nav-link dtds" routerLink="/help"
                                     routerLinkActive="router-link-active">HELP</a>
                             </li>
+                            <li class="nav-item mx-3">
+                                <a class="nav-link dtds" routerLink="/login"
+                                    routerLinkActive="router-link-active">login</a>
+                            </li>
                         </div>
                     </ul>
                 </nav>
-            </div>
+            </div> -->
             <!-- Profile Icon (Aligned to Right) -->
-            <div class="col-auto ms-auto profile-container">
-                <img class="improf" src="https://cdn-icons-png.flaticon.com/128/1177/1177568.png" alt="Profile Icon"
-                    style="cursor: pointer;" />
-            </div>
+           
 
 
 
             <!-- Search Bar -->
-            <div class="col-md-8 flex-grow-1">
-                <div class="search-bar">
-                    <input type="search" class="search-input" placeholder="Search for Products Brands and more..."
-                        aria-label="Search" id="searchInput" />
-                    <button type="button" class="search-button">
-                        <mat-icon>search</mat-icon>
-                    </button>
-                </div>
-            </div>
+           
 
 
             <!-- Header Buttons -->
-            <div class="col-auto header-btn-group">
+            <!-- <div class="col-auto header-btn-group">
                 <button mat-icon-button routerLink="/wishlist">
                     <mat-icon>favorite</mat-icon>
                 </button>
@@ -87,7 +112,7 @@
                         </button>
                     </mat-menu>
                 </ng-template>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

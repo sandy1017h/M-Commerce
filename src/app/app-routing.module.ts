@@ -7,6 +7,8 @@ import { CartComponent } from './cart/cart.component';
 import { NotfoundComponent } from './shared/components/notfound/notfound.component';
 import { authGuard } from './core/gaurds/auth.guard';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,10 @@ const routes: Routes = [
         path: "",
         component: HomePageComponent
       },
+      // {
+      //   path: "home",
+      //   component: HomePageComponent
+      // },
       {
         path:"products",
         loadChildren:()=>import('./products/products.module').then(m=>m.ProductsModule)
@@ -35,6 +41,16 @@ const routes: Routes = [
         path:"checkout",
         component:CheckoutComponent,
         canActivate:[authGuard]
+      },
+      {
+        path:'login',
+        component:LoginComponent,
+        pathMatch:'full'
+      },
+      {
+        path:'register',
+        component:RegisterComponent,
+        pathMatch:'full'
       }
     ]
   },
