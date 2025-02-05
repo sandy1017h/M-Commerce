@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , signal} from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ResponseDto } from 'src/app/core/Models/response';
@@ -11,8 +11,7 @@ import { AuthService } from 'src/app/core/Services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   RegistrationForm!:FormGroup;
-  hidePassword: boolean = true;
-  hideConfirmPassword: boolean = true;
+ 
   constructor(private fb:FormBuilder,private authService:AuthService,private router:Router){}
 
   ngOnInit(): void {
@@ -59,5 +58,22 @@ export class RegisterComponent implements OnInit {
           }
      }
   }
+hide = signal(true);
+hideconfirm = signal(true);
+clickEvent(event: MouseEvent) {
+  this.hide.set(!this.hide());
+  event.stopPropagation();
+}
+
+clickEventconfirm(event: MouseEvent) {
+  this.hide.set(!this.hideconfirm());
+  event.stopPropagation();
+}
+
+hidePassword = true;
+  hideConfirmPassword = true;
+  togglePasswordVisibility() { this.hidePassword = !this.hidePassword; }
+
+  toggleConfirmPasswordVisibility() { this.hideConfirmPassword = !this.hideConfirmPassword; }
 
 }

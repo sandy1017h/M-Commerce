@@ -1,6 +1,7 @@
 import { Component, OnInit,signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/core/Services/alert.service';
 import { AuthService } from 'src/app/core/Services/auth.service';
 
 
@@ -10,56 +11,59 @@ import { AuthService } from 'src/app/core/Services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-   loginForm!:FormGroup;
+  loginForm!:FormGroup;
 
-   constructor(private fb:FormBuilder,private authService:AuthService,private router:Router){}
+  constructor(private fb:FormBuilder,private authService:AuthService,private router:Router,private alertService: AlertService,){}
 
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: new FormControl('',[Validators.required,Validators.email]),
-      password:new FormControl('',Validators.required)
-    })
-  }
+ ngOnInit(): void {
+   this.loginForm = this.fb.group({
+     email: new FormControl('',[Validators.required,Validators.email]),
+     password:new FormControl('',Validators.required)
+   })
+ }
 
-  Login(){
-    if(this.loginForm.valid){
-       this.authService.Login({
-        email:this.loginForm.get('email')?.value,
-        password:this.loginForm.get('password')?.value
-      })
-      .subscribe(
-        {
-          next:(res)=>{
-            if(res.isSuccessed==true) {
-              this.router.navigateByUrl("");
-            }
-            else{
-              alert(res.message)
-            }
-          }
-        }
-      )
-    }
-  }
+ Login(){
+   if(this.loginForm.valid){
+      this.authService.Login({
+       email:this.loginForm.get('email')?.value,
+       password:this.loginForm.get('password')?.value
+     })
+     .subscribe(
+       {
+         next:(res)=>{
+           if(res.isSuccessed==true) {
+             this.alertService.default('Login Successfully');
+             this.router.navigateByUrl("");
+           }
+           else{
+          
+             alert(res.message);
+            
+           }
+         }
+       }
+     )
+   }
+ }
 
-  onBlurEmail(controlName: string): void {
-    const control = this.loginForm.get(controlName);
-    if (control) {
-        control.markAsDirty(); 
-    }
+ onBlurEmail(controlName: string): void {
+   const control = this.loginForm.get(controlName);
+   if (control) {
+       control.markAsDirty(); 
+   }
 }
 onBlurPassword(controlName: string): void {
-  const control = this.loginForm.get(controlName);
-  if (control) {
-      control.markAsDirty(); 
-  }
-  
+ const control = this.loginForm.get(controlName);
+ if (control) {
+     control.markAsDirty(); 
+ }
+ 
 }
 
 hide = signal(true);
 clickEvent(event: MouseEvent) {
-  this.hide.set(!this.hide());
-  event.stopPropagation();
+ this.hide.set(!this.hide());
+ event.stopPropagation();
 }
 
 }
