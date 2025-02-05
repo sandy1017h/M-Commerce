@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, inject, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, inject, OnInit, HostListener  } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CarouselModule as owlCarouselModule } from 'ngx-owl-carousel-o';
@@ -33,6 +33,8 @@ export class HomePageComponent implements OnInit {
   categories$: Observable<CategoryResDto[]>;
   products$: Observable<ProductResDto[]>;
 
+  showScrollUp: boolean = false;
+  showScrollDown: boolean = true;
 
   constructor(
     private store: Store<AppState>,
@@ -206,6 +208,23 @@ goToSlide(index: number) {
     );
   }
 
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollPosition = window.scrollY;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    this.showScrollUp = scrollPosition > 200;
+    this.showScrollDown = scrollPosition < maxScroll - 200;
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  scrollToBottom(): void {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 
 
   activate(e: Event): void {
@@ -219,8 +238,4 @@ goToSlide(index: number) {
       }
     }
   }
-
-
-
-
 }

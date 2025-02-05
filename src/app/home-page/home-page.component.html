@@ -16,6 +16,8 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> -->
 
+<!--Carousel-Start-->
+
 <div class="carousel">
         <button class="nav-btn left-btn" (click)="navigate('left')">❮</button>
 
@@ -443,3 +445,27 @@
 
         </ul>
 </div>
+
+<!-- <div class="row">
+        <img src="https://i.ibb.co/mV6NGd1x/sitting-image.jpg" alt="sitting-image" border="0">
+</div> -->
+
+<!-- Scroll Up Button -->
+<div
+  class="scroll-btn up-btn"
+  *ngIf="showScrollUp"
+  (click)="scrollToTop()"
+>
+  <i class="fa fa-arrow-up"></i>
+</div>
+
+<!-- Scroll Down Button -->
+<div
+  class="scroll-btn down-btn"
+  *ngIf="showScrollDown"
+  (click)="scrollToBottom()"
+>
+  <i class="fa fa-arrow-down"></i>
+</div>
+
+    
