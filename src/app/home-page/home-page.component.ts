@@ -36,6 +36,9 @@ export class HomePageComponent implements OnInit {
   showScrollUp: boolean = false;
   showScrollDown: boolean = true;
 
+  currentPosition: number = 0;
+  cartCount: number = 0;
+
   constructor(
     private store: Store<AppState>,
     @Inject(BASE_IMAGE_API) public serveApi: string,
@@ -206,6 +209,20 @@ goToSlide(index: number) {
       '--current-slide',
       `${this.currentSlide}`
     );
+  }
+
+  shoes = [
+    { color: 'black', name: 'Black Shoe', price: 225, image: 'https://dl.dropbox.com/s/5nhxsba4lsb1h3g/shoe-black.png', description: 'Classic black sneaker.' },
+    { color: 'red', name: 'Red Shoe', price: 235, image: 'https://dl.dropbox.com/s/502qoc9qv6uqrve/shoe-red.png', description: 'Stylish red running shoe.' },
+    { color: 'gray', name: 'Gray Shoe', price: 200, image: 'https://dl.dropbox.com/s/znovc1vt9dvfskg/shoe-grey.png', description: 'Comfortable gray sports shoe.' }
+  ];
+
+  changePosition(index: number) {
+    this.currentPosition = index;
+  }
+
+  addToCart() {
+    this.cartCount++;
   }
 
   @HostListener('window:scroll', [])

@@ -26,6 +26,7 @@
     "@ngrx/router-store": "^16.3.0",
     "@ngrx/store": "^16.3.0",
     "@ngrx/store-devtools": "^16.3.0",
+    "aos": "^2.3.4",
     "bootstrap": "^5.2.3",
     "font-awesome": "^4.7.0",
     "ngx-bootstrap": "^11.0.2",
