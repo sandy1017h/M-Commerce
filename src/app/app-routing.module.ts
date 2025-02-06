@@ -9,6 +9,7 @@ import { authGuard } from './core/gaurds/auth.guard';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
         path:'register',
         component:RegisterComponent,
         pathMatch:'full'
+      },
+      {
+        path:"user-profile/:id",
+        component:UserDetailsComponent,
       }
     ]
   },

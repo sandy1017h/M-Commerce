@@ -28,12 +28,14 @@ import { appEffects, appStore } from './redux/store';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthModule } from './auth/auth.module';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CheckoutComponent,
+    UserDetailsComponent
    
   ],
   imports: [

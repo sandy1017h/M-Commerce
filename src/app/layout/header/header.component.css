@@ -55,6 +55,22 @@
   text-decoration: underline;
 }
 
+.welcome{
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  /* font-weight: bold; */
+  color: #00bfff !important;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: inline;
+  /* text-decoration: underline; */
+}
+
+.userName{
+  color: #ff8c00;
+  text-align: center;
+  /* text-decoration: underline; */
+}
+
 .online {
   color: #ff8c00;
   font-style: italic;

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CategoryResDto } from 'src/app/core/Models/catalog';
@@ -11,11 +12,22 @@ import { AppState } from 'src/app/redux/store';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
+  isLoggedIn = false;
   categories$: Observable<CategoryResDto[]>;
+  router: any;
+  user: any;
+  UserId: number | null = null;
+  currentUser: any = null;   
 
   constructor(private store: Store<AppState>, public auth: AuthService) {
     this.categories$ = this.store.select(selectCategories);
+    const loginUser = JSON.parse(localStorage.getItem('currentUser')!);    
+    // this.UserId = loginUser.userId;
+    // this.UserId = loginUser ? loginUser.userId : null;
+    this.UserId = this.currentUser ? this.currentUser.userId : null;
+
+
   }
 
   placeholders = [
@@ -59,5 +71,33 @@ export class HeaderComponent {
 
     updatePlaceholder();
     setInterval(updatePlaceholder, 2000);
+    this.isLoggedIn = this.auth.istheUserLoggedIn();
+    this.auth.loggedIn$.subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
+
+    const user = this.auth.getLoggedInUser();
+    if (user) {
+      this.UserId = user.userId; // Ensure user object has an `id` property
+      console.log("User ID in HeaderComponent:", this.UserId);
+    }
+    this.getCurrentUser();
+  
+  }
+
+  getCurrentUser() {
+    // Simulate getting user data (Replace with actual API call)
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+  
+    if (!this.currentUser || !this.currentUser.userId) {
+      console.warn('No user data found');
+    }
+  }
+
+  logout() {
+    this.auth.LogOut();
+  }
+  myProfile(): void {
+    this.router.navigate(['user-profile/:id'+this.UserId]);
   }
 }

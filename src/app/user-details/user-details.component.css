@@ -1,0 +1,30 @@
+.tabs-container {
+    text-align: center;
+  }
+  
+  .tabs {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .tabs li {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    font-weight: bold;
+  }
+  
+  .tabs li.active {
+    border-bottom: 3px solid #007bff; /* Highlight active tab */
+    color: #007bff;
+  }
+  
+  .tab-content {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  

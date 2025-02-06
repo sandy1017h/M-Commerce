@@ -1,0 +1,45 @@
+<div class="container pb-5 px-5">
+
+            <div class="card">
+                <div class="card-header pt-4 pb-4">
+                    <div class="text-center">
+                        <div class="fs-4 fw-bold text-secondary" style="font-family: cursive;">Profile Information</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <ul class="tabs">
+                            <li (click)="setActiveTab('profile')" [ngClass]="{'active': activeTab === 'profile'}">Profile</li>
+                            <li (click)="setActiveTab('orders')" [ngClass]="{'active': activeTab === 'orders'}">Orders</li>
+                            <li (click)="setActiveTab('address')" [ngClass]="{'active': activeTab === 'address'}">Address</li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div *ngIf="activeTab === 'profile'">
+                            <div class="fw-bold fs-5">Profile Information</div>
+                            <div class="profile-container" *ngIf="user">
+                                <div class="fw-bold fs-6 pt-2">{{ user.data.userName }}</div>
+                                <p class="pt-1">Email: {{ user.data.email }}</p>
+                                <!-- <p>Phone: {{ user.data.role }}</p> -->
+                                <!-- <p>Address: {{ user.data.address }}</p> -->
+                              </div>
+                              
+                              <div *ngIf="!user">
+                                <p>Loading profile...</p>
+                              </div>
+                              
+                        </div>
+                    
+                        <div *ngIf="activeTab === 'orders'">
+                          <h3>Order Details</h3>
+                          <p>Here are your recent orders.</p>
+                        </div>
+                    
+                        <div *ngIf="activeTab === 'address'">
+                          <h3>Address Book</h3>
+                          <p>Manage your saved addresses.</p>
+                        </div>
+                      </div>
+                </div>
+            </div>
+</div>
