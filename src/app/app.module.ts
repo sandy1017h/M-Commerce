@@ -29,6 +29,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthModule } from './auth/auth.module';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
    
   ],
   imports: [
-  
+
+    ReactiveFormsModule,
     BrowserModule,
     AuthModule,
     AppRoutingModule,

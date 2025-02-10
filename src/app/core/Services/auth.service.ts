@@ -187,7 +187,7 @@ export class AuthService {
           this.storeTokens(res.data?.accessToken, res.data?.refreshToken);
           this.setLoggedInUser(res.data?.userData as UserDto);
           this.isUserLoggedIn.next(true);
-          // this.router.navigate(['']);
+          
         }
         return res;
       })

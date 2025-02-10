@@ -1,45 +1,275 @@
-<div class="container pb-5 px-5">
-
-            <div class="card">
-                <div class="card-header pt-4 pb-4">
-                    <div class="text-center">
-                        <div class="fs-4 fw-bold text-secondary" style="font-family: cursive;">Profile Information</div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="text-center">
-                        <ul class="tabs">
-                            <li (click)="setActiveTab('profile')" [ngClass]="{'active': activeTab === 'profile'}">Profile</li>
-                            <li (click)="setActiveTab('orders')" [ngClass]="{'active': activeTab === 'orders'}">Orders</li>
-                            <li (click)="setActiveTab('address')" [ngClass]="{'active': activeTab === 'address'}">Address</li>
-                        </ul>
-                    </div>
-                    <div class="tab-content">
-                        <div *ngIf="activeTab === 'profile'">
-                            <div class="fw-bold fs-5">Profile Information</div>
-                            <div class="profile-container" *ngIf="user">
-                                <div class="fw-bold fs-6 pt-2">{{ user.data.userName }}</div>
-                                <p class="pt-1">Email: {{ user.data.email }}</p>
-                                <!-- <p>Phone: {{ user.data.role }}</p> -->
-                                <!-- <p>Address: {{ user.data.address }}</p> -->
-                              </div>
-                              
-                              <div *ngIf="!user">
-                                <p>Loading profile...</p>
-                              </div>
-                              
-                        </div>
-                    
-                        <div *ngIf="activeTab === 'orders'">
-                          <h3>Order Details</h3>
-                          <p>Here are your recent orders.</p>
-                        </div>
-                    
-                        <div *ngIf="activeTab === 'address'">
-                          <h3>Address Book</h3>
-                          <p>Manage your saved addresses.</p>
-                        </div>
-                      </div>
+<div class="container pb-5 px-5 ">
+    <div class="container">
+    <div class="justify-content-center">
+        <div class="card ">
+            <div class="card-header pt-4 pb-4">
+                <div class="text-center">
+                    <div class="fs-4 fw-bold text-secondary" style="font-family: cursive;">Profile Information</div>
                 </div>
             </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <ul class="tabs">
+                        <li (click)="setActiveTab('profile')" [ngClass]="{'active': activeTab === 'profile'}">Profile
+                        </li>
+                        <li (click)="setActiveTab('orders')" [ngClass]="{'active': activeTab === 'orders'}">Orders</li>
+                        <li (click)="setActiveTab('address')" [ngClass]="{'active': activeTab === 'address'}">Address
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div *ngIf="activeTab === 'profile'">
+                        <div class="profile-container" *ngIf="user">
+                            <div class="fw-bold fs-6 pt-2">{{ user.data.userName }}</div>
+                            <p class="pt-1">Email: {{ user.data.email }}</p>
+                            <!-- <p>Phone: {{ user.data.role }}</p> -->
+                            <!-- <p>Address: {{ user.data.address }}</p> -->
+                        </div>
+
+                        <div *ngIf="!user">
+                            <p>Loading profile...</p>
+                        </div>
+
+                    </div>
+
+                    <div *ngIf="activeTab === 'orders'">
+                        <h3>Order Details</h3>
+                        <p>Here are your recent orders.</p>
+                    </div>
+
+                    <div *ngIf="activeTab === 'address'">
+                        <div class="container px-4">
+                            <button type="button" class="btn me-2 my-0 mt-0 text-white"
+                                (click)="toggleAddAddressForm()"
+                                style="background-image: linear-gradient(to right, #e3a70e, #af9af5); border-radius: 12px; top: 0;">+Add
+                                Address</button>
+                        </div>
+                        <!-- <div *ngIf="showAddAcheivementForm" class="px-4 mt-5">
+                            <div class="container">
+                                <h2>Add Address</h2>
+                                <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+                                    <div>
+                                        <label>Street:</label>
+                                        <input type="text" formControlName="street" required />
+                                    </div>
+
+                                    <div>
+                                        <label>Address Line 2 (Optional):</label>
+                                        <input type="text" formControlName="addressLine2" />
+                                    </div>
+
+                                    <div>
+                                        <label>City:</label>
+                                        <input type="text" formControlName="city" required />
+                                    </div>
+
+                                    <div>
+                                        <label>State:</label>
+                                        <input type="text" formControlName="state" required />
+                                    </div>
+
+                                    <div>
+                                        <label>Postal Code:</label>
+                                        <input type="text" formControlName="postalCode" required />
+                                    </div>
+
+                                    <div>
+                                        <label>Country:</label>
+                                        <input type="text" formControlName="country" required />
+                                    </div>
+
+                                    <button type="submit" [disabled]="addressForm.invalid">Add Address</button>
+                                </form>
+                            </div>
+
+
+                        </div> -->
+
+
+
+                        <!-- add-address form -->
+                        <div *ngIf="showAddAddressForm" class="container mt-5">
+                            <div class="card shadow-lg p-4 rounded">
+                              <h2 class="text-center mb-4">Add Address</h2>
+                              <form [formGroup]="addressForm" (ngSubmit)="onSubmit()" class="row g-3">
+                                
+                                <!-- Street -->
+                                <div class="col-md-6">
+                                  <label class="form-label">Street:</label>
+                                  <input type="text" class="form-control" formControlName="street" placeholder="Enter street" required />
+                                </div>
+                          
+                                <!-- Address Line 2 -->
+                                <div class="col-md-6">
+                                  <label class="form-label">Address Line 2 (Optional):</label>
+                                  <input type="text" class="form-control" formControlName="addressLine2" placeholder="Apartment, Suite, etc." />
+                                </div>
+                          
+                                <!-- City -->
+                                <div class="col-md-6">
+                                  <label class="form-label">City:</label>
+                                  <input type="text" class="form-control" formControlName="city" placeholder="Enter city" required />
+                                </div>
+                          
+                                <!-- State -->
+                                <div class="col-md-6">
+                                  <label class="form-label">State:</label>
+                                  <input type="text" class="form-control" formControlName="state" placeholder="Enter state" required />
+                                </div>
+                          
+                                <!-- Postal Code -->
+                                <div class="col-md-6">
+                                  <label class="form-label">Postal Code:</label>
+                                  <input type="text" class="form-control" formControlName="postalCode" placeholder="Enter postal code" required />
+                                </div>
+                          
+                                <!-- Country -->
+                                <div class="col-md-6">
+                                  <label class="form-label">Country:</label>
+                                  <input type="text" class="form-control" formControlName="country" placeholder="Enter country" required />
+                                </div>
+                          
+                                <!-- Submit Button -->
+                                <div class="col-12 text-center">
+                                  <button type="submit" class="btn btn-primary px-4 py-2" [disabled]="addressForm.invalid">
+                                    <i class="bi bi-plus-circle"></i> Add Address
+                                  </button>
+                                </div>
+                          
+                              </form>
+                            </div>
+                          </div>
+                        <!-- add-address form ended -->
+
+                        <!-- update address form -->
+                        <div *ngIf="showAddUpdateAddressForm" class="container mt-5">
+                            <div class="card shadow-lg p-4 rounded">
+                              <h2 class="text-center mb-4">Add Address</h2>
+                              <form [formGroup]="updateAddressForm" (ngSubmit)="updateAddress()" class="row g-3">
+                                
+                                <!-- Street -->
+                                <div class="col-md-6">
+                                  <label class="form-label">Street:</label>
+                                  <input type="text" class="form-control" formControlName="street" placeholder="Enter street" required />
+                                </div>
+                          
+                                <!-- Address Line 2 -->
+                                <div class="col-md-6">
+                                  <label class="form-label">Address Line 2 (Optional):</label>
+                                  <input type="text" class="form-control" formControlName="addressLine2" placeholder="Apartment, Suite, etc." />
+                                </div>
+                          
+                                <!-- City -->
+                                <div class="col-md-6">
+                                  <label class="form-label">City:</label>
+                                  <input type="text" class="form-control" formControlName="city" placeholder="Enter city" required />
+                                </div>
+                          
+                                <!-- State -->
+                                <div class="col-md-6">
+                                  <label class="form-label">State:</label>
+                                  <input type="text" class="form-control" formControlName="state" placeholder="Enter state" required />
+                                </div>
+                          
+                                <!-- Postal Code -->
+                                <div class="col-md-6">
+                                  <label class="form-label">Postal Code:</label>
+                                  <input type="text" class="form-control" formControlName="postalCode" placeholder="Enter postal code" required />
+                                </div>
+                          
+                                <!-- Country -->
+                                <div class="col-md-6">
+                                  <label class="form-label">Country:</label>
+                                  <input type="text" class="form-control" formControlName="country" placeholder="Enter country" required />
+                                </div>
+                          
+                                <!-- Submit Button -->
+                                <div class="col-12 text-center">
+                                  <button type="submit" class="btn btn-primary px-4 py-2" [disabled]="updateAddressForm.invalid">
+                                    <i class="bi bi-plus-circle"></i> Add Address
+                                  </button>
+                                </div>
+                          
+                              </form>
+                            </div>
+                          </div>
+
+                          
+
+
+                        <!-- <div>
+                            <div *ngIf="addresses.length > 0; else noAddress">
+                                <h3>User Addresses</h3>
+                                
+                                <div class="address-container ">
+                                  <div 
+                                    *ngFor="let address of addresses; let i = index"
+                                    class="address-card"
+                                    [ngClass]="{'selected': selectedAddressIndex === i}"
+                                    (click)="selectAddress(i)"
+                                  >
+                                  <div class="row mt-3">
+                                    <div class="col-lg-6 ">
+                                        <div class="card">
+                                            <div class="p-3">
+                                                <h4>Address {{ i + 1 }}</h4>
+                                                <p>{{ address.street }}, {{ address.city }}, {{ address.state }} - {{ address.postalCode }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                  
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <ng-template #noAddress>
+                                <p>No addresses found for this user.</p>
+                              </ng-template>                              
+                        </div> -->
+                        <div class="row mt-3">
+                            <div class="col-lg-6" *ngFor="let address of addresses; let i = index">
+                              <div 
+                                class="card address-card mt-3" 
+                                [ngClass]="{'selected': selectedAddressIndex === i}"
+                                (click)="selectAddress(i)"
+                              >
+                              
+                                <div class="p-3 d-flex justify-content-between align-items-center">
+                                  <!-- Radio Button -->
+                                  <input 
+                                    type="radio" 
+                                    name="selectedAddress" 
+                                    [checked]="selectedAddressIndex === i" 
+                                    (change)="selectAddress(i)"
+                                    class="form-check-input"
+                                  />
+                                  
+                                  <div class="text-end">
+                                      <a class="edit-icon" (click)="editAddress(address)">
+                                        <i class="fas fa-edit fa-md" style="color: #e3a70e;"></i>
+                                      </a>
+                                      <a class="edit-icon"  (click)="deleteAddress(address.id)">
+                                        <i class="fas fa-trash fa-md ms-3"  style="color: red;"></i>
+                                      </a>
+                                  </div>
+                                </div>
+                                <div class="ms-3 pt-1">
+                                    <h4>Address {{ i + 1 }}</h4>
+                                    <p>{{ address.street }}, {{ address.city }}, {{ address.state }} - {{ address.postalCode }}</p>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <ng-template #noAddress>
+                            <p>No addresses found for this user.</p>
+                          </ng-template>
+                          
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </div>
