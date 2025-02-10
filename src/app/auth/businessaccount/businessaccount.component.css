@@ -1,0 +1,91 @@
+/* Container Style */
+.container {
+    width: 60%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    background-color: #ffffff;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Font Family */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Stepper Navigation */
+mat-horizontal-stepper {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Form Field Style */
+mat-form-field {
+    width: 100%;
+    margin-bottom: 4px;
+    transition: transform 0.3s ease;
+}
+
+mat-form-field:hover {
+    transform: scale(1.02);
+}
+
+mat-label {
+    color: #444;
+}
+
+/* Buttons */
+button {
+    margin-top: 15px;
+    transition: transform 0.2s ease-in-out;
+    padding: 10px 20px;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* UPI Icons */
+.upi-options {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 15px;
+}
+
+.upi-icon {
+    width: 130px;
+    height: 80px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Tooltip style */
+mat-tooltip {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* UPI Icon Hover Effects */
+.upi-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Step Icon Style */
+.step-icon {
+    width: 30px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* Animation for Container */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

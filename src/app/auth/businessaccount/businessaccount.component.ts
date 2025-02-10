@@ -1,0 +1,123 @@
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
+import { Router } from '@angular/router';
+import { MatTooltip, matTooltipAnimations, MatTooltipModule } from '@angular/material/tooltip';
+
+@Component({
+  selector: 'app-businessaccount',
+  templateUrl: './businessaccount.component.html',
+  styleUrls: ['./businessaccount.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCardModule,
+    MatRadioModule,
+    MatTooltipModule
+  ]
+})
+export class BusinessaccountComponent {
+
+  businessForm: FormGroup;
+  contactForm: FormGroup;
+  paymentForm: FormGroup;
+
+  months: string[] = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+  years: string[] = [
+    '2025', '2026', '2027', '2028', '2029', '2030'  // Add more years as needed
+  ];
+
+  constructor(private fb: FormBuilder) {
+    this.businessForm = this.fb.group({
+      businessName: ['', Validators.required],
+      businessType: ['', Validators.required],
+      gstNumber: ['', Validators.required]
+    });
+
+    this.contactForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      address: ['', Validators.required]
+    });
+
+    this.paymentForm = this.fb.group({
+      paymentMethod: ['', Validators.required],
+      cardNumber: ['', Validators.required], // Add this field
+      expiryMonth: ['', Validators.required], // Add this field
+      expiryYear: ['', Validators.required], // Add this field
+      cvv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]], // Add this field
+      cardName: ['', Validators.required], // Add this field
+      upiId: ['']
+    });
+    
+  }
+
+  onPaymentMethodChange(event: any) {
+    const method = event.value;
+    if (method === 'creditcard') {
+      // Enable Credit Card fields and disable UPI fields
+      this.paymentForm.get('cardNumber')?.setValidators([Validators.required]);
+      this.paymentForm.get('expiryMonth')?.setValidators([Validators.required]);
+      this.paymentForm.get('expiryYear')?.setValidators([Validators.required]);
+      this.paymentForm.get('cvv')?.setValidators([Validators.required, Validators.minLength(3), Validators.maxLength(3)]);
+      this.paymentForm.get('cardName')?.setValidators([Validators.required]);
+
+      this.paymentForm.get('upiId')?.clearValidators();
+    } else if (method === 'upi') {
+      // Enable UPI fields and disable Credit Card fields
+      this.paymentForm.get('cardNumber')?.clearValidators();
+      this.paymentForm.get('expiryMonth')?.clearValidators();
+      this.paymentForm.get('expiryYear')?.clearValidators();
+      this.paymentForm.get('cvv')?.clearValidators();
+      this.paymentForm.get('cardName')?.clearValidators();
+
+      this.paymentForm.get('upiId')?.setValidators([Validators.required]);
+    }
+    this.paymentForm.get('cardNumber')?.updateValueAndValidity();
+    this.paymentForm.get('expiryMonth')?.updateValueAndValidity();
+    this.paymentForm.get('expiryYear')?.updateValueAndValidity();
+    this.paymentForm.get('cvv')?.updateValueAndValidity();
+    this.paymentForm.get('cardName')?.updateValueAndValidity();
+    this.paymentForm.get('upiId')?.updateValueAndValidity();
+  }
+
+
+
+  redirectToPayment(method: 'googlepay' | 'phonepe' | 'paytm' | 'razorpay') {
+    const paymentLinks = {
+      googlepay: 'https://pay.google.com/',
+      phonepe: 'https://www.phonepe.com/',
+      paytm: 'https://paytm.com/',
+      razorpay: 'https://razorpay.com/'
+    };
+
+    if (paymentLinks[method]) {
+      window.open(paymentLinks[method], '_blank');
+    }
+  }
+
+  onSubmit() {
+    if (this.paymentForm.valid) {
+      alert('Signup Successful!');
+    } else {
+      this.paymentForm.markAllAsTouched();
+    }
+  }
+}

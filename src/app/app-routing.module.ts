@@ -10,6 +10,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { BusinessaccountComponent } from './auth/businessaccount/businessaccount.component';
 
 const routes: Routes = [
   {
@@ -56,7 +57,12 @@ const routes: Routes = [
       {
         path:"user-profile/:id",
         component:UserDetailsComponent,
-      }
+      },
+      {
+        path:'Business',
+        component:BusinessaccountComponent,
+        pathMatch:'full'
+      },
     ]
   },
   {

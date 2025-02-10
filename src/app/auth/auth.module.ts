@@ -10,21 +10,25 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ButtonModule } from 'primeng/button';
+import { BrowserModule } from '@angular/platform-browser';
+import { BusinessaccountComponent } from './businessaccount/businessaccount.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
-    CommonModule,
-  
+    CommonModule,  
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,    
+    MatButtonModule,
+    BrowserModule,
+    ReactiveFormsModule
+        
   ]
 })
 export class AuthModule { }
