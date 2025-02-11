@@ -6,8 +6,8 @@
                 <!-- Profile Header -->
                 <div class="text-center">
                     <img src="../../assets/user.png" class="img-thumbnail mb-3" alt="Profile Image">
-                    <div class="fw-bold">{{ user.data.userName }}</div>
-                    <p class="text-muted">{{ user.data.email }}</p>
+                    <div class="fw-bold">{{ user?.data?.userName }}</div>
+                    <p class="text-muted">{{ user?.data?.email }}</p>
                 </div>
 
                 <!-- Navigation Tabs -->
@@ -34,9 +34,9 @@
                     <!-- Profile Tab -->
                     <div *ngIf="activeTab === 'profile'">
                         <div class="fw-bold fs-5 pb-3">Profile Information</div>
-                        <p><strong>Email:</strong> {{ user.data.email }}</p>
-                        <p><strong>Phone:</strong> {{ user.data.phone || 'Not Provided' }}</p>
-                        <p><strong>Role:</strong> {{ user.data.role }}</p>
+                        <p><strong>Email:</strong> {{ user?.data?.email }}</p>
+                        <p><strong>Phone:</strong> {{ user?.data?.phone || 'Not Provided' }}</p>
+                        <p><strong>Role:</strong> {{ user?.data?.role }}</p>
                     </div>
 
                     <!-- Orders Tab -->
