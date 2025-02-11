@@ -12,6 +12,7 @@ import { AddToWishList } from 'src/app/redux/wishlist/wishlist.action';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent {
+  router: any;
 
   constructor(@Inject(BASE_IMAGE_API) public imageUrl: string,private store:Store<AppState>) {}
    

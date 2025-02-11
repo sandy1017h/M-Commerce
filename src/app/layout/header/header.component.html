@@ -41,13 +41,24 @@
                     </div>
                 </button> -->
             </div>
-            <div class="col-md-2 d-flex justify-content-center">
+            <!-- <div class="col-md-2 d-flex justify-content-center">
                 <button routerLink="/myproducts" class="btn btn-primary add-product-btn">
                     <i class="fas fa-plus"></i>Add Product
                 </button>
-            </div>
+            </div> -->
                         <div class="col-md-3 text-end d-flex justify-content-around" *ngIf="isLoggedIn" >
-                            <p *ngIf="currentUser" class="pt-2 welcome">Welcome, <span class="userName">{{ currentUser?.userName }}</span> </p> 
+                            <p *ngIf="currentUser" class="pt-2 welcome">Hello, <span class="userName">{{ currentUser?.userName }}</span> </p> 
+                            <!-- <a aria-label="Add cart menu " routerLink="/cart" style="cursor: pointer;">
+                                <img src="../../../assets/add-to-cart.png" class="view-cart" alt="add Cart" >
+                            </a> -->
+
+                            <div class="nav-item cart-icon">
+                                <a routerLink="/cart" class="nav-link">
+                                    <img src="../../../assets/add-to-cart.png" class="view-cart" alt="add Cart" >
+                                    <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+                                </a>
+                            </div>
+                            
 
                             <a [matMenuTriggerFor]="profileMenu" aria-label="User Profile Menu" class="hide-on-mobile">
                     <img class="improf"

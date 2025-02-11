@@ -6,6 +6,8 @@ import { CategoryResDto } from 'src/app/core/Models/catalog';
 import { AuthService } from 'src/app/core/Services/auth.service';
 import { selectCategories } from 'src/app/redux/catalog/catalog.selector';
 import { AppState } from 'src/app/redux/store';
+import { CartReducer } from 'src/app/redux/cart/cart.reducer';
+import { selectCartProperty } from 'src/app/redux/cart/cart.selector';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +21,7 @@ export class HeaderComponent implements OnInit{
   user: any;
   UserId: number | null = null;
   currentUser: any = null;   
+  cartItemCount: number = 0;
 
   constructor(private store: Store<AppState>, public auth: AuthService) {
     this.categories$ = this.store.select(selectCategories);
@@ -82,6 +85,9 @@ export class HeaderComponent implements OnInit{
       console.log("User ID in HeaderComponent:", this.UserId);
     }
     this.getCurrentUser();
+    this.store.select(selectCartProperty).subscribe(cart => {
+      this.cartItemCount = cart?.shoppingCartItems.length || 0;
+    });
   
   }
 
@@ -100,4 +106,6 @@ export class HeaderComponent implements OnInit{
   myProfile(): void {
     this.router.navigate(['user-profile/:id'+this.UserId]);
   }
+
+
 }

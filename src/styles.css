@@ -78,6 +78,10 @@ h6 {
   background-color: var(--primary-color) !important;
 }
 
+.app-btn-buy-now{
+  background-color: #ffc107 !important;
+}
+
 .btn-primary {
   background-color: var(--primary-color) !important;
 }

@@ -17,7 +17,7 @@
     </div>
   
     <!-- Product Details -->
-    <mat-card-content class="product-card-content">
+    <mat-card-content class="product-card-content pt-2">
       <div class="category">{{ product.category.name }}</div>
       <h2 class="product-name">{{ product.name }}</h2>
       <div class="rating">
@@ -32,7 +32,10 @@
         <span class="current-price">{{ product.newPrice|currency:'INR' }}</span>
         <span class="old-price" *ngIf="product.originalPrice">{{ product.originalPrice|currency:'INR' }}</span>
       </div>
-      <button mat-raised-button matTooltip="Add To Cart" class="app-btn-primary" (click)="addToCart(product.id)">+ Add</button>
     </mat-card-actions>
+    <div class="d-flex">
+      <button mat-raised-button matTooltip="Add To Cart" class="app-btn-primary" (click)="addToCart(product.id)">+ Add to Cart</button>
+      <button mat-raised-button matTooltip="Buy Now" class="app-btn-buy-now ms-3" routerLink="/checkout"> BUY NOW</button>
+    </div>
   </mat-card>
   

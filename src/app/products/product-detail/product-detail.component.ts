@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CatalogService } from 'src/app/core/Services/catalog.service';
 import { Store } from '@ngrx/store';
 import { ProductResDto } from 'src/app/core/Models/catalog';
-import { CatalogService } from 'src/app/core/Services/catalog.service';
+import { BASE_API, BASE_IMAGE_API } from 'src/app/core/token/baseUrl.token';
 import { AddToCart } from 'src/app/redux/cart/cart.action';
 import { AppState } from 'src/app/redux/store';
+import { AddToWishList } from 'src/app/redux/wishlist/wishlist.action';
 
 @Component({
   selector: 'app-product-detail',
@@ -17,8 +19,14 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private catalogService:CatalogService,
-    private store:Store<AppState>
+    private store:Store<AppState>,@Inject(BASE_IMAGE_API) public imageUrl: string,
   ){}
+  
+    
+  
+    addToWishList(productId:number){
+      this.store.dispatch(AddToWishList({productId}))
+    }
 
   ngOnInit(): void {
     const id=this._route.snapshot.paramMap.get('id');
