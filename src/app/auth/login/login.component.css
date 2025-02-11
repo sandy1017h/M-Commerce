@@ -8,7 +8,7 @@
 
 body {
     height: 89vh;
-    background: url('https://videos.pexels.com/video-files/4124024/4124024-uhd_2732_1440_25fps.mp4') 
+    background: url('/src/assets/Picture_a_lively_scene_V1.mp4') 
                 no-repeat center center;
     background-size: cover;
     display: flex;
@@ -34,14 +34,14 @@ body {
 /* Centered Form Container */
 .login-container {
     position: absolute;
-    top: 57%;
+    top: 49%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 400px;
     padding: 40px;
     background: white;
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(5px) !important; */
     border-radius: 10px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     z-index: 10;
@@ -151,4 +151,29 @@ mat-form-field {
 .google-logo svg {
     width: 20px;
     height: 20px;
+}
+
+/* Video Controls */
+.video-controls {
+    position: absolute;
+    top: 85%;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.video-controls button {
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.video-controls button:hover {
+    background: rgba(0, 0, 0, 0.9);
 }

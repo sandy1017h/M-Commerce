@@ -115,7 +115,8 @@
     color: black;
   }
   .backG{
-    background-clip: url(https://www.shutterstock.com/shutterstock/videos/3642385169/preview/stock-footage-add-to-cart-shopping-online-store-icons-moving-prospective-pattern-animation-background-e.webm);
-    background: cover;
+    background: url('https://i.pinimg.com/736x/33/50/06/335006e3065dc7ac4905e7ca2e56fc21.jpg') no-repeat center center;
+    background-size: cover;
     background-repeat: no-repeat;
   }
+  

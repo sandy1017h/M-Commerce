@@ -3,12 +3,23 @@
 
 
 <body>
-	<video autoplay  loop id="bg-video">
+	<video #bgVideo id="bg-video" autoplay loop>
 		<source
-			src="https://videos.pexels.com/video-files/3626152/3626152-uhd_2732_1440_25fps.mp4"
-			type="video/mp4">
+		  src="https://ik.imagekit.io/1jnr75wvp/Picture_a_lively_scene_V1.mp4?updatedAt=1739264369374"
+		  type="video/mp4">
 		Your browser does not support the video tag.
-	</video>
+	  </video>
+	 
+	  <!-- Video Controls -->
+	  <div class="video-controls">
+		<button id="mute-btn" (click)="toggleMute()">
+		  <i class="fas" [ngClass]="videoElement?.nativeElement?.muted ? 'fa-volume-mute' : 'fa-volume-up'"></i>
+		</button>
+		<button id="play-btn" (click)="togglePlayPause()">
+		  <i class="fas" [ngClass]="videoElement?.nativeElement?.paused ? 'fa-play' : 'fa-pause'"></i>
+		</button>
+	  </div>
+	  
 
 	<div class="login-container">
 		<!-- Left Section -->
