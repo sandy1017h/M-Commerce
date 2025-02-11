@@ -212,10 +212,4 @@ export class UserDetailsComponent implements OnInit{
   updateCancel(){
     this.showAddUpdateAddressForm = false;
   }
-  addCancel(){
-    this.showAddAddressForm = false;
-  }
-  
-
-
  }
