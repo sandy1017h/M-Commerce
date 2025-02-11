@@ -17,6 +17,7 @@ export class UserDetailsComponent implements OnInit{
   activeTab: string = 'profile'; // Default active tab
   showAddUpdateAddressForm: boolean = false;
   showAddAddressForm: boolean = false;
+  buttonvisible: boolean = false;
   addressForm!: FormGroup;
   updateAddressForm! : FormGroup;
   addresses: any[] = [];
@@ -165,12 +166,16 @@ export class UserDetailsComponent implements OnInit{
   
 
   toggleAddUpdateAddressForm() {
+
     this.showAddUpdateAddressForm = !this.showAddUpdateAddressForm;
   }
+
 
   toggleAddAddressForm(){
     // this.isAddButtonVisibleAcheivement = !this.isAddButtonVisibleAcheivement;
     this.showAddAddressForm = !this.showAddAddressForm;
+    this.buttonvisible = !this.buttonvisible;
+    
   }
 
   onSubmit(): void {
@@ -204,7 +209,12 @@ export class UserDetailsComponent implements OnInit{
     }
   }
   
-
+  updateCancel(){
+    this.showAddUpdateAddressForm = false;
+  }
+  addCancel(){
+    this.showAddAddressForm = false;
+  }
   
 
 

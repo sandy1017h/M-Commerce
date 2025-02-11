@@ -17,14 +17,14 @@
   }
   
   .tabs li.active {
-    border-bottom: 3px solid #007bff; /* Highlight active tab */
-    color: #007bff;
+    border: 1.5px solid #e3a70e; /* Highlight active tab */
+    color: #e3a70e;
   }
   
   .tab-content {
     margin-top: 20px;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #e3a70e;
     border-radius: 5px;
   }
   
@@ -36,7 +36,7 @@
     transition: 0.3s;
     cursor: pointer;
     background-color: white;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); */
   }
   
   .address-card:hover {
@@ -68,7 +68,7 @@
   } */
   
   .card {
-    border-radius: 12px;
+    /* border-radius: 12px; */
     background: #ffffff;
   }
   
@@ -89,4 +89,33 @@
     padding: 10px;
     border: 1px solid #ccc;
   }
+
+  .card-header{
+    border: 1px solid #e3a70e;
+    background-color:rgb(255, 255, 255);
+  }
+
+  .card-body{
+    border-left: 1px solid #e3a70e;
+    border-right: 1px solid #e3a70e;
+    border-bottom: 1px solid #e3a70e;
+  }
   
+  .img-thumbnail{
+    width: 150px;
+    height: 150px;
+
+  }
+  
+  
+  .nav-link.active {
+    color: #e3a70e;
+  } 
+  .nav-link{
+    color: black;
+  }
+  .backG{
+    background-clip: url(https://www.shutterstock.com/shutterstock/videos/3642385169/preview/stock-footage-add-to-cart-shopping-online-store-icons-moving-prospective-pattern-animation-background-e.webm);
+    background: cover;
+    background-repeat: no-repeat;
+  }
