@@ -27,18 +27,23 @@
                 </div>
             </div>
             <!-- <div class="col-md-1"></div> -->
-            <div class="col-md-2 d-flex gap-1" *ngIf="!isLoggedIn">
-                <button routerLink="/login">
+            <div class="col-md-1 d-flex gap-1" *ngIf="!isLoggedIn">
+                <button class="login-btn"  routerLink="/login">
                     Login
                     <div class="arrow-wrapper">
                         <div class="arrow"></div>
                     </div>
                 </button>
-                <button routerLink="/register">
+                <!-- <button routerLink="/register">
                     Sign up
                     <div class="arrow-wrapper">
                         <div class="arrow"></div>
                     </div>
+                </button> -->
+            </div>
+            <div class="col-md-2 d-flex justify-content-center">
+                <button routerLink="/myproducts" class="btn btn-primary add-product-btn">
+                    <i class="fas fa-plus"></i>Add Product
                 </button>
             </div>
                         <div class="col-md-3 text-end d-flex justify-content-around" *ngIf="isLoggedIn" >

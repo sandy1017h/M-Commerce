@@ -284,7 +284,7 @@ button .arrow::before {
 }
 
 button:hover {
-  background-color: var(--hover-color);
+  background-color: transparent;
 }
 
 button:hover .arrow {
@@ -303,4 +303,99 @@ button:active {
 
 button:focus {
   outline: none;
+}
+
+button.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+button.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Stylish Login Button */
+.login-btn {
+  background: linear-gradient(135deg, #007bff, #00bfff );
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+  letter-spacing: 1px;
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #0056b3, #003b80);
+  box-shadow: 0 6px 15px rgba(0, 91, 187, 0.5);
+  transform: translateY(-2px);
+}
+
+.login-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+}
+
+.login-btn .arrow {
+  width: 10px;
+  height: 2px;
+  background: white;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.login-btn .arrow::before {
+  content: "";
+  position: absolute;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  padding: 3px;
+  top: -3px;
+  right: -2px;
+  transform: rotate(-45deg);
+  transition: all 0.3s ease-in-out;
+}
+
+.login-btn:hover .arrow {
+  width: 16px;
+}
+
+.login-btn:hover .arrow::before {
+  right: -4px;
+}
+
+.add-product-btn {
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #007bff, #ff8c00);
+  color: white;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 1px;
+}
+
+.add-product-btn:hover {
+  background: linear-gradient(135deg, #0056b3, #003b80);
+  box-shadow: 0 6px 15px rgba(0, 91, 187, 0.5);
+  transform: translateY(-2px);
+}
+
+.add-product-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
 }

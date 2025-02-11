@@ -24,6 +24,7 @@ mat-form-field {
     width: 100%;
     margin-bottom: 4px;
     transition: transform 0.3s ease;
+    padding-top: 1px;
 }
 
 mat-form-field:hover {

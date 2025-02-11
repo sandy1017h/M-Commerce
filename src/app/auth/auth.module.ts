@@ -12,11 +12,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { ButtonModule } from 'primeng/button';
 import { BrowserModule } from '@angular/platform-browser';
 import { BusinessaccountComponent } from './businessaccount/businessaccount.component';
+import { MyproductsComponent } from './myproducts/myproducts.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
+    MyproductsComponent
   ],
   imports: [
     CommonModule,  
