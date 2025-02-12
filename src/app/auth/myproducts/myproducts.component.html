@@ -1,81 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Product</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-</head>
-<body>
-    <div class="background-animation">
-        <div class="floating-box"></div>
-        <div class="floating-box"></div>
-        <div class="floating-box"></div>
-    </div>
-
-    <div class="content-container">
-        <div class="left-side">
-            <h2>Why do sellers love selling on MIT-Online?</h2>
-            <div class="info-section">
-                <div class="info-item">
-                    <img src="https://www.csm.tech/storage/uploads/images/9523Africa's-Rising-E-Commerce2%20(1).jpg" alt="Opportunity Icon" class="icon">
-                    <h3>Opportunity</h3>
-                    <p>45 crore+ of customers across 19000+ pincodes, and access to shopping festivals like The Big Billion Days, and more.</p>
-                </div>
-                <div class="info-item">
-                    <img src="ease-icon.png" alt="Ease of Doing Business" class="icon">
-                    <h3>Ease of Doing Business</h3>
-                    <p>Create your Flipkart seller account in under 10 minutes with just 1 product and a valid GSTIN number.</p>
-                </div>
-                <div class="info-item">
-                    <img src="growth-icon.png" alt="Growth" class="icon">
-                    <h3>Growth</h3>
-                    <p>Sellers see an average 2.8X spike in growth, 2.3X more visibility, and up to 5X growth in The Big Billion Days Sale.</p>
-                </div>
-                <div class="info-item">
-                    <img src="support-icon.png" alt="Additional Support" class="icon">
-                    <h3>Additional Support</h3>
-                    <p>Account management services, exclusive training programs, business insights, catalogue/photoshoot support, and more.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="right-side">
-            <img src="https://i.ibb.co/YTFH3PR4/myproducts.png" alt="Seller Image">
-        </div><br>
-     
-    </div>
-    
-</body>
-</html>
-
-<div class="row">
-  <div class="product-form-container">
-    <h2>Add New Product</h2>
-    <form (ngSubmit)="onSubmit()" #productForm="ngForm">
-        <div class="form-group">
-            <label for="productName">Product Name</label>
-            <input type="text" id="productName" class="form-control" [(ngModel)]="product.name" name="name" required>
-        </div>
-        <div class="form-group">
-            <label for="productDescription">Product Description</label>
-            <textarea id="productDescription" class="form-control" [(ngModel)]="product.description" name="description" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="productPrice">Price</label>
-            <input type="number" id="productPrice" class="form-control" [(ngModel)]="product.price" name="price" required>
-        </div>
-        <div class="form-group">
-            <label for="productCategory">Category</label>
-            <select id="productCategory" class="form-control" [(ngModel)]="product.category" name="category" required>
-                <option *ngFor="let category of categories" [value]="category">{{category}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="productImage">Product Image</label>
-            <input type="file" id="productImage" (change)="onImageUpload($event)" required>
-        </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!productForm.form.valid">Add Product</button>
+<div class="container">
+    <h2>Add Product</h2>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <label>Product Name:</label>
+      <input type="text" formControlName="name" />
+  
+      <label>Description:</label>
+      <textarea formControlName="description"></textarea>
+  
+      <label>Original Price:</label>
+      <input type="number" formControlName="originalPrice" />
+  
+      <label>Discount Percentage:</label>
+      <input type="number" formControlName="discountPercentage" />
+  
+      <label>Discount Amount:</label>
+      <input type="number" formControlName="discountAmount" />
+  
+      <label>Stock Quantity:</label>
+      <input type="number" formControlName="stockQuantity" />
+  
+      <label>Category:</label>
+      <select formControlName="categoryId">
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+  
+      <label>Brand:</label>
+      <select formControlName="brandId">
+        <option *ngFor="let brand of brands" [value]="brand.id">
+          {{ brand.name }}
+        </option>
+      </select>
+  
+      <label>Thumbnail:</label>
+      <input type="file" (change)="onFileSelected($event)" />
+  
+      <button type="submit" [disabled]="productForm.invalid">Submit</button>
     </form>
-</div>
-</div>
+  </div>
+  
