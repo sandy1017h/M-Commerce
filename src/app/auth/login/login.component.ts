@@ -35,8 +35,9 @@ export class LoginComponent implements OnInit {
             next: (res) => {
               if (res.isSuccessed == true) {
                 this.alertService.default('Login Successfully');
-                //  window.location.reload();
-                this.router.navigateByUrl("");
+                // window.location.reload();
+                this.router.navigate(['home']);
+
               }
               else {
 

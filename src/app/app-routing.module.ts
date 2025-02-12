@@ -19,13 +19,14 @@ const routes: Routes = [
     path:"",
     component:HomeComponent,
     children: [
-      {
-        path: "",
-        component: HomePageComponent
-      },
+      // {
+      //   path: "",
+      //   component: HomePageComponent
+      // },
       {
         path: "home",
-        component: HomePageComponent
+        component: HomePageComponent,
+        pathMatch:'full'
       },
       {
         path:"products",
