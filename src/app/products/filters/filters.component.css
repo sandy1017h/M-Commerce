@@ -1,7 +1,12 @@
 .filter-container{
     padding: 0rem 1rem;
-    border: 1px solid rgba(115, 115, 115, 0.162);
-    border-radius: 1rem;
+    border: 2px solid rgb(238, 236, 234);
+
+    /* border-radius: 1rem; */
+    /* background-image: url('https://i.ibb.co/N67BHRH5/profile-background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;  */
 }
 .filter-section{
     margin: 1rem 0rem;
