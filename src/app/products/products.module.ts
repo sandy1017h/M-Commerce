@@ -8,7 +8,7 @@ import { PraginationComponent } from './pragination/pragination.component';
 import { FiltersComponent } from './filters/filters.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
@@ -21,6 +21,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import {MatTabsModule} from '@angular/material/tabs'
+import { AddProductComponent } from './add-product/add-product.component';
 
 
 
@@ -31,7 +32,8 @@ import {MatTabsModule} from '@angular/material/tabs'
     FiltersComponent,
     SortHeaderComponent,
     ProductCardComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    AddProductComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,9 @@ import {MatTabsModule} from '@angular/material/tabs'
 
     HttpClientModule,
 
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   exports:[

@@ -11,8 +11,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { BusinessaccountComponent } from './auth/businessaccount/businessaccount.component';
-import { MyproductsComponent } from './auth/myproducts/myproducts.component';
 import { SellerPaymentComponent } from './auth/seller-payment/seller-payment.component';
+import { AddProductComponent } from './products/add-product/add-product.component';
 
 const routes: Routes = [
   {
@@ -66,9 +66,10 @@ const routes: Routes = [
         component:BusinessaccountComponent,
         pathMatch:'full'
       },
+     
       {
-        path:'myproducts',
-        component:MyproductsComponent,
+        path:'addproducts',
+        component:AddProductComponent,
         pathMatch:'full'
       },
       {

@@ -1,0 +1,45 @@
+<div class="container">
+    <h2>Add Product</h2>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <label>Product Name:</label>
+      <input type="text" formControlName="name" />
+  
+      <label>Description:</label>
+      <textarea formControlName="description"></textarea>
+  
+      <label>Original Price:</label>
+      <input type="number" formControlName="originalPrice" />
+  
+      <label>Discount Percentage:</label>
+      <input type="number" formControlName="discountPercentage" />
+  
+      <label>Discount Amount:</label>
+      <input type="number" formControlName="discountAmount" readonly />
+    
+      <label>New Price:</label>
+      <input type="number" formControlName="newPrice" readonly />
+  
+      <label>Stock Quantity:</label>
+      <input type="number" formControlName="stockQuantity" />
+  
+      <label>Category:</label>
+      <select formControlName="categoryId">
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+  
+      <label>Brand:</label>
+      <select formControlName="brandId">
+        <option *ngFor="let brand of brands" [value]="brand.id">
+          {{ brand.name }}
+        </option>
+      </select>
+  
+      <label>Thumbnail:</label>
+      <input type="file" (change)="onFileSelected($event)" />
+  
+      <button type="submit" [disabled]="productForm.invalid">Submit</button>
+    </form>
+  </div>
+  
