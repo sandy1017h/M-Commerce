@@ -1,43 +1,119 @@
 <div class="container">
     <h2>Add Product</h2>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-      <label>Product Name:</label>
-      <input type="text" formControlName="name" />
   
-      <label>Description:</label>
-      <textarea formControlName="description"></textarea>
+      <div class="form-group">
+        <label>Product Name:</label>
+        <input type="text" formControlName="name" />
+      </div>
   
-      <label>Original Price:</label>
-      <input type="number" formControlName="originalPrice" />
+      <div class="form-group">
+        <label>Description:</label>
+        <textarea formControlName="description"></textarea>
+      </div>
   
-      <label>Discount Percentage:</label>
-      <input type="number" formControlName="discountPercentage" />
+      <div class="form-group">
+        <label>Original Price:</label>
+        <input type="number" formControlName="originalPrice" />
+      </div>
   
-      <label>Discount Amount:</label>
-      <input type="number" formControlName="discountAmount" readonly />
-    
-      <label>New Price:</label>
-      <input type="number" formControlName="newPrice" readonly />
+      <div class="form-row">
+        <div class="form-group">
+          <label>Discount Percentage:</label>
+          <input type="number" formControlName="discountPercentage" (input)="calculatePrice()" />
+        </div>
+        <div class="form-group">
+          <label>Discount Amount:</label>
+          <input type="number" formControlName="discountAmount" readonly />
+        </div>
+      </div>
   
-      <label>Stock Quantity:</label>
-      <input type="number" formControlName="stockQuantity" />
+      <div class="form-group">
+        <label>New Price:</label>
+        <input type="number" formControlName="newPrice" readonly />
+      </div>
   
-      <label>Category:</label>
-      <select formControlName="categoryId">
-        <option *ngFor="let category of categories" [value]="category.id">
-          {{ category.name }}
-        </option>
-      </select>
+      <div class="form-group">
+        <label>Stock Quantity:</label>
+        <input type="number" formControlName="stockQuantity" />
+      </div>
   
-      <label>Brand:</label>
-      <select formControlName="brandId">
-        <option *ngFor="let brand of brands" [value]="brand.id">
-          {{ brand.name }}
-        </option>
-      </select>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Category:</label>
+          <select formControlName="categoryId">
+            <option *ngFor="let category of categories" [value]="category.id">
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
   
-      <label>Thumbnail:</label>
-      <input type="file" (change)="onFileSelected($event)" />
+        <div class="form-group">
+          <label>Brand:</label>
+          <select formControlName="brandId">
+            <option *ngFor="let brand of brands" [value]="brand.id">
+              {{ brand.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group">
+          <label>RAM:</label>
+          <select formControlName="ram">
+            <option *ngFor="let ram of ramOptions" [value]="ram">{{ ram }}</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label>Storage:</label>
+          <select formControlName="storage">
+            <option *ngFor="let storage of storageOptions" [value]="storage">{{ storage }}</option>
+          </select>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Processor:</label>
+        <input type="text" formControlName="processor" />
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group">
+          <label>Display Size:</label>
+          <select formControlName="displaySize">
+            <option *ngFor="let size of displaySizes" [value]="size">{{ size }}"</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label>Battery (mAh):</label>
+          <input type="number" formControlName="batteryCapacity" />
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Warranty:</label>
+        <select formControlName="warranty">
+          <option value="6">6 Months</option>
+          <option value="12">1 Year</option>
+          <option value="24">2 Years</option>
+        </select>
+      </div>
+  
+   <!-- Image Upload Section -->
+<div class="image-upload">
+    <label>Upload Images:</label>
+    <div class="upload-box">
+      <input type="file" (change)="onFileSelected($event)" multiple />
+      <!-- <p>Drag & Drop or Click to Upload</p> -->
+    </div>
+    <!-- <div class="image-preview">
+      <img *ngFor="let img of uploadedImages" [src]="img" />
+    </div> -->
+  </div>
+  
   
       <button type="submit" [disabled]="productForm.invalid">Submit</button>
     </form>

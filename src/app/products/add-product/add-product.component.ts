@@ -1,7 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyBrand } from 'src/app/core/Models/mybrand';
 import { MyCategory } from 'src/app/core/Models/mycategory';
 import { CatalogService } from 'src/app/core/Services/catalog.service';
@@ -11,7 +10,6 @@ import { MyproductService } from 'src/app/core/Services/myproduct.service';
 
 @Component({
   selector: 'app-add-product',
-
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
@@ -21,13 +19,20 @@ export class AddProductComponent implements OnInit {
   categories: MyCategory[] = [];
   selectedFile: File | null = null;
 
+  // Define the missing properties
+  ramOptions: string[] = ['4GB', '6GB', '8GB', '12GB', '16GB'];
+  storageOptions: string[] = ['64GB', '128GB', '256GB', '512GB', '1TB'];
+  displaySizes: string[] = ['5.5"', '6.1"', '6.5"', '6.8"'];
+  uploadedImages: File[] = [];
+
+
   constructor(
     private fb: FormBuilder,
     private productService: MyproductService,
     private brandService: MybrandService,
     private categoryService: MycategoryService,
-    private cdRef: ChangeDetectorRef
-    , private http: HttpClient,
+    private cdRef: ChangeDetectorRef,
+    private http: HttpClient,
     private catalogservice: CatalogService
   ) {
     this.productForm = this.fb.group({
@@ -35,12 +40,18 @@ export class AddProductComponent implements OnInit {
       description: ['', Validators.required],
       originalPrice: [0, Validators.required],
       discountPercentage: [0],
-      discountAmount: [{ value: 0, disabled: true }], // Disable input field
-      newPrice: [{ value: 0, disabled: true }], // Disable input field
+      discountAmount: [{ value: 0, disabled: true }],
+      newPrice: [{ value: 0, disabled: true }],
       stockQuantity: ['', [Validators.required, Validators.min(1)]],
       categoryId: ['', Validators.required],
       brandId: ['', Validators.required],
       thumbnail: [null],
+      ram: ['', Validators.required],
+      storage: ['', Validators.required],
+      displaySize: ['', Validators.required],
+      processor: ['', Validators.required],      
+      warranty: ['', Validators.required],       
+      batteryCapacity: ['', Validators.required] 
     });
   }
 
@@ -48,58 +59,46 @@ export class AddProductComponent implements OnInit {
     this.loadBrands();
     this.loadCategories();
     this.productForm.valueChanges.subscribe(() => {
-      this.calculateDiscount();
+      this.calculatePrice();
     });
-    console.log('Brands:', this.brands);
-    console.log('Categories:', this.categories);
   }
-  calculateDiscount(): void {
+
+  calculatePrice(): void {
     const originalPrice = this.productForm.get('originalPrice')?.value || 0;
     const discountPercentage = this.productForm.get('discountPercentage')?.value || 0;
-
     const discountAmount = (originalPrice * discountPercentage) / 100;
     const newPrice = originalPrice - discountAmount;
 
-    // Update form fields
     this.productForm.patchValue(
       {
         discountAmount: discountAmount,
         newPrice: newPrice
       },
-      { emitEvent: false } // Prevent infinite loop
+      { emitEvent: false }
     );
   }
 
   loadBrands(): void {
-    console.log('🔵 Fetching brands...');
     this.brandService.getBrands().subscribe(
-      (brands: MyBrand[]) => {  // ✅ Expecting an array
-        this.brands = brands; // ✅ Assign it directly
-        console.log('✅ Brands updated:', this.brands);
+      (brands: MyBrand[]) => {
+        this.brands = brands;
       },
       (error) => {
-        console.error('❌ Error fetching brands:', error);
+        console.error('Error fetching brands:', error);
       }
     );
   }
-  
-  
+
   loadCategories(): void {
-    console.log('🔵 Fetching categories...');
     this.categoryService.getCategories().subscribe(
-      (categories: MyCategory[]) => {  // ✅ Expecting an array
+      (categories: MyCategory[]) => {
         this.categories = categories;
-        console.log('✅ Categories updated:', this.categories);
       },
       (error) => {
-        console.error('❌ Error fetching categories:', error);
+        console.error('Error fetching categories:', error);
       }
     );
   }
-  
-  
-  
-  
 
   onFileSelected(event: any): void {
     if (event.target.files.length > 0) {
@@ -111,17 +110,20 @@ export class AddProductComponent implements OnInit {
     if (this.productForm.valid) {
       const formData = new FormData();
       Object.keys(this.productForm.controls).forEach((key) => {
-        if (key === 'thumbnail' && this.selectedFile) {
-          formData.append(key, this.selectedFile);
-        } else {
-          formData.append(key, this.productForm.get(key)?.value);
+        const controlValue = this.productForm.get(key)?.value;
+        if (controlValue !== null && controlValue !== undefined) {
+          formData.append(key, controlValue.toString());  // ✅ Ensure values are converted to strings
         }
       });
-
+  
+      if (this.selectedFile) {
+        formData.append('thumbnail', this.selectedFile);
+      }
+  
       this.productService.addProduct(formData).subscribe(
         (response) => {
           console.log('Product added successfully', response);
-          this.productForm.reset(); // ✅ Reset the form
+          this.productForm.reset();
           alert('Product added successfully!');
         },
         (error) => {
@@ -132,4 +134,5 @@ export class AddProductComponent implements OnInit {
       alert('Please fill in all required fields correctly.');
     }
   }
+  
 }
