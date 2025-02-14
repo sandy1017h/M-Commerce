@@ -28,7 +28,7 @@
             </div>
             <!-- <div class="col-md-1"></div> -->
             <div class="col-md-1 d-flex gap-1" *ngIf="!isLoggedIn">
-                <button class="login-btn"  routerLink="/login">
+                <button class="login-btn" routerLink="/login">
                     Login
                     <div class="arrow-wrapper">
                         <div class="arrow"></div>
@@ -46,34 +46,32 @@
                     <i class="fas fa-plus"></i>Add Product
                 </button>
             </div>
-                        <div class="col-md-3 text-end d-flex justify-content-around" *ngIf="isLoggedIn" >
-                            <p *ngIf="currentUser" class="pt-2 welcome">Hello, <span class="userName">{{ currentUser?.userName }}</span> </p> 
-                            <!-- <a aria-label="Add cart menu " routerLink="/cart" style="cursor: pointer;">
+            <div class="col-md-3 text-end d-flex justify-content-around" *ngIf="isLoggedIn">
+                <p *ngIf="currentUser" class="pt-2 welcome">Hello, <span class="userName">{{ currentUser?.userName
+                        }}</span> </p>
+                <!-- <a aria-label="Add cart menu " routerLink="/cart" style="cursor: pointer;">
                                 <img src="../../../assets/add-to-cart.png" class="view-cart" alt="add Cart" >
                             </a> -->
 
-                            <div class="nav-item cart-icon">
-                                <a routerLink="/cart" class="nav-link">
-                                    <img src="../../../assets/add-to-cart.png" class="view-cart" alt="add Cart" >
-                                    <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
-                                </a>
-                            </div>
-                            
-
-                            <a [matMenuTriggerFor]="profileMenu" aria-label="User Profile Menu" class="hide-on-mobile">
-                    <img class="improf"
-                     src="../../../assets/user.png"
-                     alt="Profile Icon"
-                     style="cursor: pointer;" />
-                            </a>
-                <mat-menu #profileMenu="matMenu" class="mt-3" >
-                    <a mat-menu-item [routerLink]="['/user-profile/',UserId]">
-                      <mat-icon style="color: #ff8c00;">person</mat-icon>
-                      <span class="my_profile">My Profile</span>
+                <div class="nav-item cart-icon">
+                    <a routerLink="/cart" class="nav-link">
+                        <img src="../../../assets/add-to-cart.png" class="view-cart" alt="add Cart">
+                        <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
                     </a>
-                    <a mat-menu-item  (click)="logout()" routerLink="/login">
-                      <mat-icon style="color: #ff8c00;">logout</mat-icon>
-                      <span class="my_profile">Logout</span>
+                </div>
+
+
+                <a [matMenuTriggerFor]="profileMenu" aria-label="User Profile Menu" class="hide-on-mobile">
+                    <img class="improf" src="../../../assets/user.png" alt="Profile Icon" style="cursor: pointer;" />
+                </a>
+                <mat-menu #profileMenu="matMenu" class="mt-3">
+                    <a mat-menu-item [routerLink]="['/user-profile/',UserId]">
+                        <mat-icon style="color: #ff8c00;">person</mat-icon>
+                        <span class="my_profile">My Profile</span>
+                    </a>
+                    <a mat-menu-item (click)="logout()" routerLink="/login">
+                        <mat-icon style="color: #ff8c00;">logout</mat-icon>
+                        <span class="my_profile">Logout</span>
                     </a>
                 </mat-menu>
             </div>

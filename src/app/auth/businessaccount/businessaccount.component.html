@@ -1,5 +1,5 @@
 <body class="bg-img">
-    <mat-card class="container mt-3">
+    <mat-card class="container pt-4">
     <h2 class="title" style="text-align: center;">Business Account Signup</h2>
     
         <mat-horizontal-stepper #stepper [linear]="true">
@@ -7,10 +7,9 @@
             <mat-step [stepControl]="businessForm">
                 <form [formGroup]="businessForm">
                     <ng-template matStepLabel>
-                        <img src="https://i.ibb.co/G3x7LN9z/Contact-us-elements.png" class="step-icon" />
-                        Business Information
-                    </ng-template>
-    
+                    </ng-template>  
+                    <img src="https://i.ibb.co/G3x7LN9z/Contact-us-elements.png" class="step-icon" />
+                    Business Information
                     <mat-form-field appearance="outline">
                         <mat-label>Business Name</mat-label>
                         <input matInput formControlName="businessName" required />
@@ -50,10 +49,9 @@
             <mat-step [stepControl]="contactForm">
                 <form [formGroup]="contactForm">
                     <ng-template matStepLabel>
-                        <img src="https://i.ibb.co/nNMhz3Vr/Influencer-marketing-concept-with-finger-pointing.png" class="step-icon" />
-                        Contact Information
                     </ng-template>
-    
+                    <img src="https://i.ibb.co/nNMhz3Vr/Influencer-marketing-concept-with-finger-pointing.png" class="step-icon" />
+                    Contact Information
                     <mat-form-field appearance="outline">
                         <mat-label>Email Address</mat-label>
                         <input matInput type="email" formControlName="email" required />
@@ -97,9 +95,9 @@
             <mat-step [stepControl]="paymentForm">
                 <form [formGroup]="paymentForm">
                     <ng-template matStepLabel>
-                        <img src="https://i.ibb.co/TM5kLpbr/Online-payment-and-transaction.png" class="step-icon" />
-                        Payment Information
                     </ng-template>
+                    <img src="https://i.ibb.co/TM5kLpbr/Online-payment-and-transaction.png" class="step-icon" />
+                    Payment Information
     
                     <mat-radio-group formControlName="paymentMethod" (change)="onPaymentMethodChange($event)">
                         <mat-radio-button value="creditcard">Pay with Credit Card</mat-radio-button>
