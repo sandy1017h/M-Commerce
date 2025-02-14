@@ -24,6 +24,8 @@ export class CheckoutComponent implements OnInit{
   selectedAddress: any;
   user: any;
   UserId: number;
+  amount: number = 0;
+
   currentUser: any = null; 
 
   constructor(
@@ -48,7 +50,11 @@ export class CheckoutComponent implements OnInit{
     this.getCurrentUser();
     this.store.dispatch(loadCart());
     this.getUserAddresses();
+    this.route.queryParams.subscribe(params => {
+      this.amount = params['amount'] ? parseFloat(params['amount']) : 0;
+    });
   }
+
   getCurrentUser() {
     // Simulate getting user data (Replace with actual API call)
     this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');

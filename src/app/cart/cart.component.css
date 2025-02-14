@@ -11,7 +11,7 @@
 }
 
 .current-price {
-    color:red;
+    color: rgb(19, 221, 8);
     font-size: 16px;
     font-weight: 500;
 }
@@ -19,7 +19,7 @@
 .old-price {
     margin-left: 5px;
     font-size: 16px;
-    color: gray;
+    color: red;
     text-decoration: line-through;
 }
 

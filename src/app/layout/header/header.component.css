@@ -428,9 +428,9 @@ button.btn-primary:hover {
 /* Badge */
 .cart-badge {
   position: absolute;
-  top: -5px;
+  top: 0px;
   right: 0px;
-  background: #ff3d00;
+  background: #ff8400;
   color: white;
   font-size: 12px;
   font-weight: bold;

@@ -1,4 +1,5 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ProductResDto } from 'src/app/core/Models/catalog';
 import { BASE_API, BASE_IMAGE_API } from 'src/app/core/token/baseUrl.token';
@@ -14,7 +15,7 @@ import { AddToWishList } from 'src/app/redux/wishlist/wishlist.action';
 export class ProductCardComponent {
   router: any;
 
-  constructor(@Inject(BASE_IMAGE_API) public imageUrl: string,private store:Store<AppState>) {}
+  constructor(@Inject(BASE_IMAGE_API) public imageUrl: string,private store:Store<AppState>, private route: ActivatedRoute) {}
    
   @Input() product!:ProductResDto;
 
@@ -25,4 +26,7 @@ export class ProductCardComponent {
   addToWishList(productId:number){
     this.store.dispatch(AddToWishList({productId}))
   }
+
+  
+  
 }

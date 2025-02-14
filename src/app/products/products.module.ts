@@ -20,7 +20,9 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import {MatTabsModule} from '@angular/material/tabs'
+import {MatTabsModule} from '@angular/material/tabs';
+import { ProductCheckoutComponent } from './product-checkout/product-checkout.component';
+
 import { AddProductComponent } from './add-product/add-product.component';
 
 
@@ -33,6 +35,7 @@ import { AddProductComponent } from './add-product/add-product.component';
     SortHeaderComponent,
     ProductCardComponent,
     ProductDetailComponent,
+    ProductCheckoutComponent,
     AddProductComponent
   ],
   imports: [

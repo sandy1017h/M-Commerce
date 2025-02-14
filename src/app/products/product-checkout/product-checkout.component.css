@@ -1,0 +1,151 @@
+.checkout-card {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .checkout-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .product-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .product-details {
+    flex: 1;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  /* .price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.current-price {
+    color:red;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.old-price {
+    margin-left: 5px;
+    font-size: 16px;
+    color: gray;
+    text-decoration: line-through;
+} */
+
+
+.address-card {
+    border: 2px solid #e3a70e;
+    padding: 10px;
+    border-radius: 8px;
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: white;
+    /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); */
+  }
+  
+  .address-card:hover {
+    border-color: #00d91d;
+  }
+  
+  .selected {
+    border: solid 2px;
+    border-color:  #00d91d;
+    background-color: white;
+  }
+
+  .form-check-input{
+    width: 20px;
+    height: 20px;
+  }
+  
+  .form-check-input:checked {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background-color: #00d91d;
+    border-color: #00d91d;
+  }
+
+  
+
+/* List Group */
+.list-group-item {
+    border: none;
+    padding: 15px 20px;
+    background: #fff;
+}
+
+/* Product Image */
+.img-fluid {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Name */
+.list-group-item h6 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+}
+
+/* Quantity Styling */
+.text-muted {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Price Section */
+.price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.current-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.old-price {
+    font-size: 12px;
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Subtotal and Discounts */
+.fw-bold {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .col-5, .col-2, .col-3 {
+        text-align: center;
+    }
+
+    .price {
+        align-items: center;
+    }
+
+    .list-group-item {
+        padding: 12px 10px;
+    }
+}

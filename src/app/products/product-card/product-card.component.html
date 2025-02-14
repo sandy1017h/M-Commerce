@@ -35,7 +35,7 @@
     </mat-card-actions>
     <div class="d-flex">
       <button mat-raised-button matTooltip="Add To Cart" class="app-btn-primary" (click)="addToCart(product.id)">+ Add to Cart</button>
-      <button mat-raised-button matTooltip="Buy Now" class="app-btn-buy-now ms-3" routerLink="/checkout"> BUY NOW</button>
+      <button mat-raised-button matTooltip="Buy Now" class="app-btn-buy-now ms-3" [routerLink]="['checkout',product.id]" >BUY NOW</button>
     </div>
   </mat-card>
   
