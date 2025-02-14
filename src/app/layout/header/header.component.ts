@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit{
   UserId: number | null = null;
   currentUser: any = null;   
   cartItemCount: number = 0;
+  isAdmin: boolean = false;
 
   constructor(private store: Store<AppState>, public auth: AuthService) {
     this.categories$ = this.store.select(selectCategories);
@@ -88,7 +89,8 @@ export class HeaderComponent implements OnInit{
     this.store.select(selectCartProperty).subscribe(cart => {
       this.cartItemCount = cart?.shoppingCartItems.length || 0;
     });
-  
+    this.isAdmin = this.auth.isAdmin();
+
   }
 
   getCurrentUser() {

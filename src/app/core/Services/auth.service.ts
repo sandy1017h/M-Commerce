@@ -187,15 +187,23 @@ export class AuthService {
           this.storeTokens(res.data?.accessToken, res.data?.refreshToken);
           this.setLoggedInUser(res.data?.userData as UserDto);
           this.isUserLoggedIn.next(true);
+          localStorage.setItem('userRole', res.data?.userData?.role || '');
+
           
         }
         return res;
       })
     );
   }
-
+  isAdmin(): boolean {
+    return localStorage.getItem('userRole') === 'ADMIN';
+  }
+  
   RegisterUser(userData: RegisterUserData): Observable<ResponseDto<null>> {
     return this.http.post<ResponseDto<null>>(`${this.baseUrl}/register`, userData);
+  }
+  RegisterBusinessacc(businessaccountData: RegisterUserData): Observable<ResponseDto<null>> {
+    return this.http.post<ResponseDto<null>>(`${this.baseUrl}/register-admin`, businessaccountData);
   }
 
   LogOut(): void {

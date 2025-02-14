@@ -10,6 +10,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { Router } from '@angular/router';
 import { MatTooltip, matTooltipAnimations, MatTooltipModule } from '@angular/material/tooltip';
+import { AuthService } from 'src/app/core/Services/auth.service';
+import { ResponseDto } from 'src/app/core/Models/response';
 
 @Component({
   selector: 'app-businessaccount',
@@ -43,7 +45,7 @@ export class BusinessaccountComponent {
     '2025', '2026', '2027', '2028', '2029', '2030'  // Add more years as needed
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private authService:AuthService, private router:Router) {
     this.businessForm = this.fb.group({
       businessName: ['', Validators.required],
       businessType: ['', Validators.required],
@@ -52,9 +54,10 @@ export class BusinessaccountComponent {
 
     this.contactForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      PhoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      address: ['', Validators.required]
+      address: ['', Validators.required],
+      userName: ['', Validators.required]
     });
 
     this.paymentForm = this.fb.group({
@@ -112,12 +115,38 @@ export class BusinessaccountComponent {
       window.open(paymentLinks[method], '_blank');
     }
   }
-
   onSubmit() {
-    if (this.paymentForm.valid) {
-      alert('Signup Successful!');
+    if (this.businessForm.valid && this.contactForm.valid) {
+      const businessAccountData = {
+        businessName: this.businessForm.get('businessName')?.value,
+        businessType: this.businessForm.get('businessType')?.value,
+        gstNumber: this.businessForm.get('gstNumber')?.value,
+        email: this.contactForm.get('email')?.value,
+        PhoneNumber: this.contactForm.get('PhoneNumber')?.value,
+        password: this.contactForm.get('password')?.value,
+        address: this.contactForm.get('address')?.value,
+        userName: this.contactForm.get('userName')?.value
+      };
+  
+      this.authService.RegisterBusinessacc(businessAccountData)
+        .subscribe({
+          next: (res: ResponseDto<null>) => {
+            if (res.isSuccessed) {
+              alert('Business Account Registered Successfully!');
+              this.router.navigateByUrl('/login');
+            } else {
+              alert(res.message);
+            }
+          },
+          error: (err) => {
+            console.error('Registration failed:', err);
+            alert('Something went wrong. Please try again.');
+          }
+        });
     } else {
-      this.paymentForm.markAllAsTouched();
+      this.businessForm.markAllAsTouched();
+      this.contactForm.markAllAsTouched();
     }
   }
+  
 }

@@ -17,7 +17,7 @@
                 </div>
             </div>
             <br>
-            <div class="col-md-7 flex-grow-1 text-center">
+            <div class="col-md-5 flex-grow-1 text-center">
                 <div class="search-bar">
                     <input type="search" class="search-input" placeholder="Search for Products Brands and more..."
                         aria-label="Search" id="searchInput" />
@@ -41,7 +41,7 @@
                     </div>
                 </button> -->
             </div>
-            <div class="col-md-2 d-flex justify-content-center">
+            <div class="col-md-2 d-flex justify-content-center" *ngIf="isAdmin">
                 <button routerLink="/addproducts" class="btn btn-primary add-product-btn">
                     <i class="fas fa-plus"></i>Add Product
                 </button>
