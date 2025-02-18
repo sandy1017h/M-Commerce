@@ -23,30 +23,32 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', Validators.required)
     })
   }
-
   Login() {
     if (this.loginForm.valid) {
       this.authService.Login({
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value
-      })
-        .subscribe(
-          {
-            next: (res) => {
-              if (res.isSuccessed == true) {
-                this.alertService.default('Login Successfully');
-                // window.location.reload();
-                this.router.navigate(['home']);
-
-              }
-              else {
-
-                alert(res.message);
-
-              }
-            }
+      }).subscribe({
+        next: (res) => {
+          if (res.isSuccessed) {
+            const userRole = localStorage.getItem('userRole');
+       
+            if (userRole === 'ADMIN') {
+              console.log('Navigating to /busaccdashboard'); 
+              this.router.navigate(['/busaccdashboard']);
+            } else if (userRole === 'USER') {
+              console.log('Navigating to /home'); 
+              this.router.navigate(['/home']);
+            } 
+          } else {
+            alert(res.message);
           }
-        )
+        },
+        error: (err) => {
+          console.error('Login failed:', err);
+          alert('Login failed. Please try again.');
+        }
+      });
     }
   }
 

@@ -126,6 +126,7 @@ import { LoginReq, LoginResData, RegisterUserData } from '../Models/Auth';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ResponseDto } from '../Models/response';
 import { UserDto } from '../Models/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -139,9 +140,9 @@ export class AuthService {
   isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(this.checkInitialLoginState());
   logIn$ = this.isUserLoggedIn.asObservable();
   private userDetail = new BehaviorSubject<UserDto | null | undefined>(undefined);
-  router: any;
+  //router: any;
 
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService, private router:Router) {
     // Initialize user details on service load
     const currentUser = this.getLoggedInUser();
     if (currentUser) {
@@ -179,7 +180,6 @@ export class AuthService {
   getUserById(UserId: number): Observable<UserDto> {
     return this.http.get<UserDto>(`${this.baseUrl}/get-user/${UserId}`);
   }
-
   Login(credentials: LoginReq): Observable<ResponseDto<LoginResData>> {
     return this.http.post<ResponseDto<LoginResData>>(`${this.baseUrl}/login`, credentials).pipe(
       map((res) => {
@@ -187,18 +187,39 @@ export class AuthService {
           this.storeTokens(res.data?.accessToken, res.data?.refreshToken);
           this.setLoggedInUser(res.data?.userData as UserDto);
           this.isUserLoggedIn.next(true);
-          localStorage.setItem('userRole', res.data?.userData?.role || '');
-
-          
+  
+          const userRole = res.data?.userData?.role?.toUpperCase() || ''; // Convert to uppercase to avoid case issues
+  
+          console.log('User Role:', userRole); 
+  
+          if (userRole === 'ADMIN') {
+            console.log('Navigating to /busaccdashboard'); 
+            this.router.navigate(['/busaccdashboard']);
+          } else if (userRole === 'USER') {
+            console.log('Navigating to /home'); 
+            this.router.navigate(['/home']);
+          } 
+          // else {
+          //   console.warn('Unknown role detected:', userRole); 
+          //   this.router.navigate(['/home']); // Default route
+          // }
         }
         return res;
+      }),
+      catchError((error) => {
+        console.error('Login error:', error);
+        return of({ isSuccessed: false, message: 'Login failed', data: null });
       })
     );
   }
+  
   isAdmin(): boolean {
     return localStorage.getItem('userRole') === 'ADMIN';
   }
-  
+  isUser(): boolean {
+    return localStorage.getItem('userRole') === 'USER';
+  }
+
   RegisterUser(userData: RegisterUserData): Observable<ResponseDto<null>> {
     return this.http.post<ResponseDto<null>>(`${this.baseUrl}/register`, userData);
   }
@@ -211,6 +232,8 @@ export class AuthService {
       next: (res) => {
         if (res.isSuccessed) {
           this.clearSession();
+          localStorage.removeItem('userRole');
+    this.isUserLoggedIn.next(false);
           console.log("Logout successful");
         } else {
           console.error("Logout failed:", res.message);

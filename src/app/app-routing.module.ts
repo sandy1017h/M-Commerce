@@ -13,6 +13,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { BusinessaccountComponent } from './auth/businessaccount/businessaccount.component';
 import { SellerPaymentComponent } from './auth/seller-payment/seller-payment.component';
 import { AddProductComponent } from './products/add-product/add-product.component';
+import { BusinessAccDashboardComponent } from './business-acc-dashboard/business-acc-dashboard.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
         component: HomePageComponent,
         pathMatch:'full'
       },
+      
       {
         path:"products",
         loadChildren:()=>import('./products/products.module').then(m=>m.ProductsModule)
@@ -78,6 +80,11 @@ const routes: Routes = [
         pathMatch:'full'
       },
     ]
+  },
+  {
+    path: "busaccdashboard",
+    component: BusinessAccDashboardComponent,
+    pathMatch: 'full'
   },
   {
     path:"**",
