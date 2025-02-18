@@ -325,10 +325,22 @@
 
         <button class="nav-btn right-btn" (click)="navigate('right')">❯</button>
 
-        <div class="carousel-indicators" type="radio">
-                <span class="indicator" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide"
-                        (click)="goToSlide(i)"></span>
+        <!-- <div class="carousel-indicators circle-indicators">
+                <div class="circle-indicator" *ngFor="let slide of slides; let i = index"
+                     [class.active]="i === currentSlide"
+                     (click)="goToSlide(i)">
+                </div>
+        </div> -->
+        <div class="carousel-indicators progress-indicators">
+                <div class="progress-bar" *ngFor="let slide of slides; let i = index"
+                     [class.active]="i === currentSlide"
+                     [class.loading]="isLoading"
+                     [style.animation-play-state]="i === currentSlide ? 'running' : 'paused'"
+                     (click)="goToSlide(i)">
+                </div>
         </div>
+            
+            
 
 </div>
 <!-- All Products -->
@@ -410,7 +422,6 @@
 </div>
 
 <!-- Click Carousel view -->
-
 <div class="slider">
         <ul class="termslides">
                 <li class="subslides">
@@ -469,7 +480,7 @@
                 </li>
                 <!-- Mobiles -->
                 <li>
-                        <input type="radio" name="slide">
+                                <input type="radio" name="slide">
                         <div class="slide">
                                 <div class="left left-face">
                                         <img src="https://images.unsplash.com/photo-1521939094609-93aba1af40d7?fm=jpg&q=60&w=3000"
@@ -667,7 +678,6 @@
                                 </div>
                         </div>
                 </li>
-
                 <li>
                         <input type="radio" name="slide">
                         <div class="slide">
@@ -721,7 +731,6 @@
                                 </div>
                         </div>
                 </li>
-
         </ul>
 </div>
 

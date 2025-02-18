@@ -1,38 +1,101 @@
- /* MainCarousels */
-
- .carousel {
+/* Main Carousel */
+.carousel {
   position: relative;
   width: 100%;
   max-width: 100%;
   overflow: hidden;
 }
 
-.carousel-indicators {
+/* Circular Indicators */
+/* .circle-indicators {
   position: absolute;
-  bottom: 58px;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 19px;
+  gap: 10px;
+  justify-content: center;
 }
 
-
-
-.indicator {
-  width: 30px;
-  height: 6px;
-  background-color: #ccc; 
-  border-radius: 3px;
+.circle-indicator {
+  width: 10px;
+  height: 10px;
+  background: #ddd;
+  border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.3s;
+  position: relative;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
-.indicator.active {
-  background-color: #000;
+.circle-indicator.active {
+  background: #ff6f00;
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(255, 111, 0, 0.5);
+  animation: pulseEffect 1.5s infinite;
 }
 
-.indicator:hover {
-  background-color: #888;
+@keyframes pulseEffect {
+  0% {
+    box-shadow: 0 0 8px rgba(255, 111, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 111, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(255, 111, 0, 0.5);
+  }
+} */
+
+.progress-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  width: 22%;
+  justify-content: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 7px;
+  background: #ddd;
+  border-radius: 3px;
+  transition: width 0.3s ease-in-out;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-bar.active {
+  background: #ff6f00;
+  width: 100%;
+  animation: loadProgress 1s linear forwards;
+}
+
+.progress-bar.blinking {
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes loadProgress {
+  from {
+      width: 0%;
+  }
+  to {
+      width: 100%;
+  }
+}
+
+@keyframes shadeEffect {
+  0% {
+    background: #ff6f00; /* Start with the base active color */
+  }
+  50% {
+    background: #ff9e33; /* Lighter shade */
+  }
+  100% {
+    background: #ff6f00; /* Return to the original active color */
+  }
 }
 
 

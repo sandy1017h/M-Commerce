@@ -32,7 +32,7 @@ import { CatalogService } from '../core/Services/catalog.service';
 export class HomePageComponent implements OnInit {
   categories$: Observable<CategoryResDto[]>;
   products$: Observable<ProductResDto[]>;
-
+  isLoading = true;
   showScrollUp: boolean = false;
   showScrollDown: boolean = true;
 
@@ -195,14 +195,11 @@ navigate(direction: string) {
 goToSlide(index: number) {
     this.currentSlide = index;
 }
-  // Auto-slide every 3 seconds
   ngOnInit() {
     setInterval(() => {
       this.navigate('right');
     }, 3000);
   }
-
-
 
   updateCSSVariable(): void {
     document.documentElement.style.setProperty(
@@ -255,4 +252,5 @@ goToSlide(index: number) {
       }
     }
   }
+  
 }

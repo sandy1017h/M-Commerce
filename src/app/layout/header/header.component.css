@@ -325,7 +325,7 @@ button.btn-primary:hover {
 
 /* Stylish Login Button */
 .login-btn {
-  background: linear-gradient(135deg, rgb(0,191,255), rgb(255,140,0) );
+  /* background: linear-gradient(135deg, rgb(0,191,255), rgb(255,140,0) ); */
   color: white;
   border: none;
   padding: 12px 20px;
@@ -385,7 +385,7 @@ button.btn-primary:hover {
   border-radius: 25px;
   font-size: 16px;
   font-weight: bold;
-  background: linear-gradient(135deg, #007bff, #ff8c00);
+  /* background: linear-gradient(135deg, #007bff, #ff8c00); */
   color: white;
   border: none;
   transition: all 0.3s ease-in-out;
