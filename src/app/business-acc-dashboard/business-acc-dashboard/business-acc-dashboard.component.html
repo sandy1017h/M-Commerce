@@ -1,0 +1,326 @@
+<body>
+  <div id="notificationContainer"></div>
+  <div class="dashboard">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <img src="https://i.ibb.co/5XQbnpxQ/MIT-Online-logo.png" alt="Logo" class="logo">
+        <h2 class="pt-2 headname">Seller Dashboard</h2>
+      </div>
+      <ul class="nav-links">
+        <li class="active" data-page="dashboard">
+          <a href="#dashboard"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+        </li>
+        <li data-page="orders">
+          <a href="#orders"><i class="fas fa-box"></i>Orders</a>
+        </li>
+        <li data-page="products">
+          <a href="#products"><i class="fas fa-tags"></i>Products</a>
+        </li>
+        <li data-page="customers">
+          <a href="#customers"><i class="fas fa-users"></i>Customers</a>
+        </li>
+        <li data-page="reports">
+          <a href="#reports"><i class="fas fa-chart-bar"></i>Reports</a>
+        </li>
+        <li data-page="settings">
+          <a href="#settings"><i class="fas fa-cog"></i>Settings</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      <header>
+        <div class="search-bar">
+          <input type="text" placeholder="Search...">
+          <!-- <i class="fas fa-search"></i> -->
+        </div>
+        <div class="user-info" id="userInfoDropdown">
+          <img src="https://i.ibb.co/yFQgWwHY/Sandy-12.png" alt="User Avatar" class="avatar">
+          <span>John Doe</span>
+          <i class="fas fa-chevron-down"></i>
+          <div class="dropdown-menu" id="profileDropdown">
+            <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+            <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div>
+      </header>
+
+      <div id="dashboard" class="page-content active">
+        <h1>Dashboard Overview</h1>
+        <div class="stats-grid">
+          <div class="stat-card glow onebg">
+            <i class="fas fa-users iconclr"></i>
+            <div class="stat-info">
+              <h3 class="matext">Total Orders</h3>
+              <p class="matpercentage">15,687</p>
+            </div>
+          </div>
+          <div class="stat-card glow twobg">
+            <i class="fas fa-shopping-bag iconclr"></i>
+            <div class="stat-info">
+              <h3 class="matext">Completed Orders</h3>
+              <p class="matpercentage">$124,563</p>
+            </div>
+          </div>
+          <div class="stat-card glow threebg">
+            <i class="fas fa-chart-line iconclr"></i>
+            <div class="stat-info">
+              <h3 class="matext">Inprogress</h3>
+              <p class="matpercentage">$67,895</p>
+            </div>
+          </div>
+          <div class="stat-card glow fourbg">
+            <i class="fas fa-percent iconclr"></i>
+            <div class="stat-info">
+              <h3 class="matext">Revenue/Growth</h3>
+              <p class="matpercentage">+24.5%</p>
+            </div>
+          </div>
+        </div>
+        <div class="charts-container">
+          <div id="salesChart" class="chart-card glow">
+            <h3>Sales Analytics</h3>
+            <div #salesChart ></div>
+          </div>
+          <div class="chart-card glow">
+            <h3>User Growth</h3>
+            <div #userGrowthChart ></div>
+          </div>
+        </div>
+        <div class="data-tables">
+          <div class="table-card glow">
+            <h3>Recent Orders</h3>
+            <table mat-table [dataSource]="recentOrdersData" class="mat-elevation-z8">
+        
+              <ng-container matColumnDef="orderId">
+                <th mat-header-cell *matHeaderCellDef> Order ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.orderId}} </td>
+              </ng-container>
+        
+              <ng-container matColumnDef="customer">
+                <th mat-header-cell *matHeaderCellDef> Customer </th>
+                <td mat-cell *matCellDef="let element"> {{element.customer}} </td>
+              </ng-container>
+        
+              <ng-container matColumnDef="product">
+                <th mat-header-cell *matHeaderCellDef> Product </th>
+                <td mat-cell *matCellDef="let element"> {{element.product}} </td>
+              </ng-container>
+        
+              <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef> Amount </th>
+                <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+              </ng-container>
+        
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+              </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsOrders"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsOrders;"></tr>
+            </table>
+            <mat-paginator #paginator1 [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+          </div>
+        
+          <div class="table-card glow">
+            <h3>Top Selling Products</h3>
+            <table mat-table [dataSource]="topProductsData" class="mat-elevation-z8">
+        
+              <ng-container matColumnDef="product">
+                <th mat-header-cell *matHeaderCellDef> Product </th>
+                <td mat-cell *matCellDef="let element"> {{element.product}} </td>
+              </ng-container>
+        
+              <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Price </th>
+                <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+              </ng-container>
+        
+              <ng-container matColumnDef="sold">
+                <th mat-header-cell *matHeaderCellDef> Sold </th>
+                <td mat-cell *matCellDef="let element"> {{element.sold}} </td>
+              </ng-container>
+        
+              <ng-container matColumnDef="revenue">
+                <th mat-header-cell *matHeaderCellDef> Revenue </th>
+                <td mat-cell *matCellDef="let element"> {{element.revenue}} </td>
+              </ng-container>
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsProducts"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsProducts;"></tr>
+            </table>
+            <mat-paginator #paginator2 [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+        
+      </div>
+      <div id="analytics" class="page-content">
+        <h1>Analytics</h1>
+        <div class="charts-container">
+          <div class="chart-card glow">
+            <h3>Traffic Sources</h3>
+            <div id="trafficSourcesChart"></div>
+          </div>
+          <div class="chart-card glow">
+            <h3>Conversion Rates</h3>
+            <div id="conversionRatesChart"></div>
+          </div>
+        </div>
+        <div class="data-tables">
+          <div class="table-card glow">
+            <h3>Top Performing Pages</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Page</th>
+                  <th>Views</th>
+                  <th>Unique Visitors</th>
+                  <th>Avg. Time on Page</th>
+                </tr>
+              </thead>
+              <tbody id="topPagesBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="sales" class="page-content">
+        <h1>Sales Management</h1>
+        <div class="charts-container">
+          <div class="chart-card glow">
+            <h3>Monthly Sales</h3>
+            <div id="monthlySalesChart"></div>
+          </div>
+          <div class="chart-card glow">
+            <h3>Sales by Category</h3>
+            <div id="salesByCategoryChart"></div>
+          </div>
+        </div>
+        <div class="data-tables">
+          <div class="table-card glow">
+            <h3>Sales Representatives Performance</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Total Sales</th>
+                  <th>Deals Closed</th>
+                  <th>Performance Score</th>
+                </tr>
+              </thead>
+              <tbody id="salesRepBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="customers" class="page-content">
+        <h1>Customer Management</h1>
+        <div class="charts-container">
+          <div class="chart-card glow">
+            <h3>Customer Acquisition</h3>
+            <div id="customerAcquisitionChart"></div>
+          </div>
+          <div class="chart-card glow">
+            <h3>Customer Satisfaction</h3>
+            <div id="customerSatisfactionChart"></div>
+          </div>
+        </div>
+        <div class="data-tables">
+          <div class="table-card glow">
+            <h3>Top Customers</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Total Spent</th>
+                  <th>Orders</th>
+                  <th>Last Order Date</th>
+                </tr>
+              </thead>
+              <tbody id="topCustomersBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="inventory" class="page-content">
+        <h1>Inventory Management</h1>
+        <div class="charts-container">
+          <div class="chart-card glow">
+            <h3>Stock Levels</h3>
+            <div id="stockLevelsChart"></div>
+          </div>
+          <div class="chart-card glow">
+            <h3>Product Turnover</h3>
+            <div id="productTurnoverChart"></div>
+          </div>
+        </div>
+        <div class="data-tables">
+          <div class="table-card glow">
+            <h3>Low Stock Alert</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Current Stock</th>
+                  <th>Reorder Level</th>
+                  <th>Supplier</th>
+                </tr>
+              </thead>
+              <tbody id="lowStockBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="settings" class="page-content">
+        <h1>Settings</h1>
+        <div class="settings-container">
+          <div class="settings-card glow">
+            <h3>Account Settings</h3>
+            <form id="accountSettingsForm">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="johndoe">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="john@example.com">
+              </div>
+              <div class="form-group">
+                <label for="password">New Password</label>
+                <input type="password" id="password" name="password">
+              </div>
+              <button type="submit" class="btn-primary">Save Changes</button>
+            </form>
+          </div>
+          <div class="settings-card glow">
+            <h3>Notification Preferences</h3>
+            <form id="notificationSettingsForm">
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" name="emailNotifications" checked>
+                  Email Notifications
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" name="smsNotifications">
+                  SMS Notifications
+                </label>
+              </div>
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" name="pushNotifications" checked>
+                  Push Notifications
+                </label>
+              </div>
+              <button type="submit" class="btn-primary">Save Preferences</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="script.js"></script>
+</body>

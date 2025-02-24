@@ -30,6 +30,15 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthModule } from './auth/auth.module';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CommonModule } from '@angular/common';
+import { BusinessAccDashboardRoutingModule } from './business-acc-dashboard/business-acc-dashboard-routing.module';
+import { BusinessAccDashboardModule } from './business-acc-dashboard/business-acc-dashboard.module';
 
 @NgModule({
   declarations: [
@@ -40,12 +49,17 @@ import { ReactiveFormsModule } from '@angular/forms';
    
   ],
   imports: [
-
+    BusinessAccDashboardModule,
     ReactiveFormsModule,
     BrowserModule,
     AuthModule,
     AppRoutingModule,
     LayoutModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSortModule,
+    MatTooltipModule,
     BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot(appStore),
@@ -54,6 +68,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     CarouselModule,
     ButtonModule,
+    MatIconModule,
+    CommonModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('accestoken'),

@@ -13,10 +13,10 @@
 	  <!-- Video Controls -->
 	  <div class="video-controls">
 		<button id="mute-btn" (click)="toggleMute()">
-		  <i class="fas" [ngClass]="videoElement?.nativeElement?.muted ? 'fa-volume-mute' : 'fa-volume-up'"></i>
+			<i class="fas" [ngClass]="videoElement && videoElement.nativeElement.muted ? 'fa-volume-mute' : 'fa-volume-up'"></i>
 		</button>
 		<button id="play-btn" (click)="togglePlayPause()">
-		  <i class="fas" [ngClass]="videoElement?.nativeElement?.paused ? 'fa-play' : 'fa-pause'"></i>
+			<i class="fas" [ngClass]="videoElement && videoElement.nativeElement.paused ? 'fa-play' : 'fa-pause'"></i>
 		</button>
 	  </div>
 	  

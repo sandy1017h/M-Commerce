@@ -34,8 +34,8 @@ body {
 /* Centered Form Container */
 .login-container {
     position: absolute;
-    top: 53%;
-    left: 50%;
+    top: 50%;
+    left: 79%;
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 400px;
