@@ -15,6 +15,9 @@ import { ProductDetailComponent } from '../product-detail/product-detail.compone
 import { CatalogService } from 'src/app/core/Services/catalog.service';
 import { ProductResDto } from 'src/app/core/Models/catalog';
 
+declare var $: any;
+declare var WOW: any;
+declare var Razorpay: any;
 
 @Component({
   selector: 'app-product-checkout',
@@ -124,17 +127,53 @@ export class ProductCheckoutComponent implements OnInit{
       address: selectedAddress
     };
 
-    this.http.post('https://localhost:7174/api/Order/place', orderData).subscribe(
-      (response: any) => {
-        console.log('Order placed successfully', response);
-        alert('Order placed successfully!');
-        this.router.navigate(['/order-success']);
-      },
-      (error: any) => {
-        console.error('Error placing order', error);
-        alert('Failed to place order.');
-      }
-    );
+    // this.http.post('https://localhost:7174/api/Order/place', orderData).subscribe(
+    //   (response: any) => {
+    //     console.log('Order placed successfully', response);
+    //     alert('Order placed successfully!');
+    //     this.router.navigate(['/order-success']);
+    //   },
+    //   (error: any) => {
+    //     console.error('Error placing order', error);
+    //     alert('Failed to place order.');
+    //   }
+    // );
   } 
+
+  payNow() {
+    const RozarpayOptions = {
+      description: 'Sample Razorpay demo',
+      currency: 'INR',
+      amount: this.amount,
+      name: 'Ashok',
+      key: 'rzp_test_FjzUpnjxof6pQr', 
+      image: 'https://i.imgur.com/FApqk3D.jpeg',
+      // prefill: {
+      //   name: this.form.value.Name,
+      //   email: this.form.value.Email,
+      //   contact: this.form.value.Phone,
+      // },
+      theme: {
+        color: '#6466e3'
+      },
+      modal: {
+        ondismiss:  () => {
+          console.log('dismissed')
+        }
+      }
+    }
+    const successCallback = (paymentId: any) => {
+      console.log(paymentId);
+      // this.fetchPaymentDetails(paymentId);
+    }
+ 
+    const failureCallback = (e: any) => {
+      console.log(e);
+    }
+ 
+    Razorpay.open(RozarpayOptions,successCallback, failureCallback)
+  } 
+
+
   
 }

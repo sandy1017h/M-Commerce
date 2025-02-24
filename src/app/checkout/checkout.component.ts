@@ -6,11 +6,17 @@ import { AppState } from '../redux/store';
 import { Store } from '@ngrx/store';
 import { selectCartProperty } from '../redux/cart/cart.selector';
 import { loadCart } from '../redux/cart/cart.action';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/Services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddressService } from '../core/Services/address.service';
 import { Address } from '../core/Models/Address';
+import { CatalogService } from 'src/app/core/Services/catalog.service';
+import { ProductResDto } from 'src/app/core/Models/catalog';
+
+declare var $: any;
+declare var WOW: any;
+declare var Razorpay: any;
 
 @Component({
   selector: 'app-checkout',
@@ -25,13 +31,17 @@ export class CheckoutComponent implements OnInit{
   user: any;
   UserId: number;
   amount: number = 0;
+  product!:ProductResDto;
 
   currentUser: any = null; 
+  http: any;
+
+  
 
   constructor(
-    @Inject(BASE_IMAGE_API) public imageUrl: string,
+    @Inject(BASE_IMAGE_API) public imageUrl: string,  private router: Router,
     private store:Store<AppState>,private route: ActivatedRoute, private authService: AuthService, private fb: FormBuilder,
-        private addressService: AddressService
+        private addressService: AddressService,private catalogService:CatalogService
   ){
     this.cart$=this.store.select(selectCartProperty);
     const loginUser = JSON.parse(localStorage.getItem('currentUser')!);    
@@ -88,6 +98,75 @@ export class CheckoutComponent implements OnInit{
 
   selectAddress(index: number): void {
     this.selectedAddressIndex = index;
+  }
+
+  buyNow() {
+    if (this.selectedAddressIndex === null) {
+      alert('Please select an address before proceeding.');
+      return;
+    }
+    this.payNow();
+
+    const selectedAddress = this.addresses[this.selectedAddressIndex];
+    const orderData = {
+      userId :this.UserId,
+      productId: this.product.id,
+      productName: this.product.name,
+      amount: this.product.newPrice,
+      address: selectedAddress
+    };
+
+
+    // this.http.post('https://localhost:7174/api/Order/place', orderData).subscribe(
+    //   (response: any) => {
+    //     console.log('Order placed successfully', response);
+    //     alert('Order placed successfully!');
+    //     this.router.navigate(['/order-success']);
+    //   },
+    //   (error: any) => {
+    //     console.error('Error placing order', error);
+    //     alert('Failed to place order.');
+    //   }
+    // );
+  } 
+ 
+  payNow() {
+    const RozarpayOptions = {
+      description: 'Sample Razorpay demo',
+      currency: 'INR',
+      amount: this.amount,
+      name: 'Ashok',
+      key: 'rzp_test_FjzUpnjxof6pQr', 
+      image: 'https://i.imgur.com/FApqk3D.jpeg',
+      // prefill: {
+      //   name: this.form.value.Name,
+      //   email: this.form.value.Email,
+      //   contact: this.form.value.Phone,
+      // },
+      theme: {
+        color: '#6466e3'
+      },
+      modal: {
+        ondismiss:  () => {
+          console.log('dismissed')
+        }
+      }
+    }
+    const successCallback = (paymentId: any) => {
+      console.log(paymentId);
+      // this.fetchPaymentDetails(paymentId);
+    }
+ 
+    const failureCallback = (e: any) => {
+      console.log(e);
+    }
+ 
+    Razorpay.open(RozarpayOptions,successCallback, failureCallback)
+  } 
+
+
+  gotoaddaddress(){
+    this.router.navigate(['user-profile/:id']);
   }
 
   
