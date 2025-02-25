@@ -161,7 +161,7 @@ export class HomePageComponent implements OnInit {
 
   slides = [
     {
-        src: 'https://illuminationconsulting.com/wp-content/uploads/2023/12/ecommerce-success-and-website-design.png',
+        src: 'https://img.freepik.com/free-vector/instagram-sales-stories-collection_23-2148335695.jpg?t=st=1740402807~exp=1740406407~hmac=7236bd7ca39d9c7bf9a38e31d1ab1caf66e0ed851d5072b6f8570440e294c029&w=1380',
         alt: 'Image 1',
         heading: 'Big Sale!',
         description: 'Get up to 50% off on selected items.'
@@ -173,7 +173,8 @@ export class HomePageComponent implements OnInit {
         description: 'Hurry, offers valid until midnight!'
     },
     {
-        src: 'https://1realtour.com/wp-content/uploads/2024/03/Best-E-commerce-Web-Design-Company.png',
+        src: 'https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/09/cover-8.jpg?ssl=1&quality=80&w=f',
+        // src: 'https://images.unsplash.com/photo-1587131664239-885aa135f8a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDMyfHx8ZW58MHx8fHx8',
         alt: 'Image 3',
         heading: 'New Arrivals',
         description: 'Shop the latest trends now.'
@@ -198,7 +199,7 @@ goToSlide(index: number) {
   ngOnInit() {
     setInterval(() => {
       this.navigate('right');
-    }, 3000);
+    }, 5000);
   }
 
   updateCSSVariable(): void {
