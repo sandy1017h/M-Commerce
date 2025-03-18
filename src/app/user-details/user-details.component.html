@@ -20,8 +20,9 @@
                     <li class="nav-item">
                         <div class="nav-link" [ngClass]="{'active': activeTab === 'orders'}" (click)="setActiveTab('orders')">
                             <i class="fas fa-box"></i> Orders
+                            <span *ngIf="pendingOrdersCount > 0" class="badge bg-danger ms-2">{{ pendingOrdersCount }}</span>
                         </div>
-                    </li>
+                    </li>                    
                     <li class="nav-item">
                         <div class="nav-link" [ngClass]="{'active': activeTab === 'address'}" (click)="setActiveTab('address')">
                             <i class="fas fa-map-marker-alt"></i> Address
@@ -41,8 +42,7 @@
 
                     <!-- Orders Tab -->
                     <div *ngIf="activeTab === 'orders'">
-                        <div class="fw-bold fs-5 pb-3">Order History</div>
-                        <p>Your recent orders will be displayed here.</p>
+                        <app-orders></app-orders>
                     </div>
 
                     <!-- Address Tab -->
@@ -171,12 +171,9 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        
                     </div>
-                </div> <!-- End of Tab Content -->
-            </div> <!-- End of Card -->
+                </div>
+            </div> 
         </div>
     </div>
 </div>

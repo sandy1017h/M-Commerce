@@ -23,7 +23,7 @@ export class UserDetailsComponent implements OnInit{
   addresses: any[] = [];
   selectedAddressIndex: number | null = null;
   selectedAddress: any;
-
+  pendingOrdersCount = 3;
 
   setActiveTab(tabName: string) {
     this.activeTab = tabName;

@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { MatTooltip, matTooltipAnimations, MatTooltipModule } from '@angular/material/tooltip';
 import { AuthService } from 'src/app/core/Services/auth.service';
 import { ResponseDto } from 'src/app/core/Models/response';
+import { AlertService } from 'src/app/core/Services/alert.service';
 
 @Component({
   selector: 'app-businessaccount',
@@ -45,7 +46,7 @@ export class BusinessaccountComponent {
     '2025', '2026', '2027', '2028', '2029', '2030'  // Add more years as needed
   ];
 
-  constructor(private fb: FormBuilder,private authService:AuthService, private router:Router) {
+  constructor(private fb: FormBuilder,private authService:AuthService, private router:Router,private alertService:AlertService) {
     this.businessForm = this.fb.group({
       businessName: ['', Validators.required],
       businessType: ['', Validators.required],
@@ -132,7 +133,7 @@ export class BusinessaccountComponent {
         .subscribe({
           next: (res: ResponseDto<null>) => {
             if (res.isSuccessed) {
-              alert('Business Account Registered Successfully!');
+              this.alertService.default('Successfully created the Business account');
               this.router.navigateByUrl('/login');
             } else {
               alert(res.message);
@@ -140,7 +141,7 @@ export class BusinessaccountComponent {
           },
           error: (err) => {
             console.error('Registration failed:', err);
-            alert('Something went wrong. Please try again.');
+            this.alertService.default('Registration failed. Please try again later.');
           }
         });
     } else {

@@ -14,6 +14,8 @@ import { Address } from 'src/app/core/Models/Address';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { CatalogService } from 'src/app/core/Services/catalog.service';
 import { ProductResDto } from 'src/app/core/Models/catalog';
+import { Router } from '@angular/router';
+
 
 declare var $: any;
 declare var WOW: any;
@@ -37,12 +39,11 @@ export class ProductCheckoutComponent implements OnInit{
 
   currentUser: any = null; 
   http: any;
-  router: any;
 
   constructor(
     @Inject(BASE_IMAGE_API) public imageUrl: string,
     private store:Store<AppState>,private route: ActivatedRoute, private authService: AuthService, private fb: FormBuilder,
-        private addressService: AddressService,private catalogService:CatalogService,
+        private addressService: AddressService,private catalogService:CatalogService,private router: Router
   ){
     this.cart$=this.store.select(selectCartProperty);
     const loginUser = JSON.parse(localStorage.getItem('currentUser')!);    
@@ -126,7 +127,8 @@ export class ProductCheckoutComponent implements OnInit{
       amount: this.product.newPrice,
       address: selectedAddress
     };
-
+    this.router.navigate(['/products']);
+    this.payNow();
     // this.http.post('https://localhost:7174/api/Order/place', orderData).subscribe(
     //   (response: any) => {
     //     console.log('Order placed successfully', response);
@@ -160,6 +162,11 @@ export class ProductCheckoutComponent implements OnInit{
         ondismiss:  () => {
           console.log('dismissed')
         }
+      },
+      handler: (response: any) => {
+        console.log('Payment Successful:', response);
+        alert('Payment Successful!');
+        this.router.navigate(['/products']);
       }
     }
     const successCallback = (paymentId: any) => {
@@ -172,6 +179,7 @@ export class ProductCheckoutComponent implements OnInit{
     }
  
     Razorpay.open(RozarpayOptions,successCallback, failureCallback)
+    this.router.navigate(['/products']);
   } 
 
 

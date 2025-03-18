@@ -146,6 +146,11 @@ export class CheckoutComponent implements OnInit{
       theme: {
         color: '#6466e3'
       },
+      handler: (response: any) => {
+        console.log('Payment Successful:', response);
+        alert('Payment Successful!');
+        this.router.navigate(['user-profile/'+this.UserId]);
+      },
       modal: {
         ondismiss:  () => {
           console.log('dismissed')
@@ -166,7 +171,7 @@ export class CheckoutComponent implements OnInit{
 
 
   gotoaddaddress(){
-    this.router.navigate(['user-profile/:id']);
+    this.router.navigate(['user-profile/'+this.UserId]);
   }
 
   

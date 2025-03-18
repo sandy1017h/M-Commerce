@@ -1,0 +1,55 @@
+<section class="my-orders">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="card p-4">
+            <h3 class="text-center mb-4">My Orders</h3>
+  
+            <!-- Orders Table -->
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Order ID</th>
+                    <th>Order Date</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of orders; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.orderDate | date: 'MMM d, y' }}</td>
+                    <td>₹{{ order.totalAmount | number: '1.2-2' }}</td>
+                    <td>
+                      <span class="badge" [ngClass]="{
+                          'bg-success': order.status === 'Completed',
+                          'bg-warning': order.status === 'Pending',
+                          'bg-danger': order.status === 'Cancelled'
+                        }">
+                        {{ order.status }}
+                      </span>
+                    </td>
+                    <td>
+                      <button class="btn btn-info btn-sm" (click)="viewOrderDetails(order)">
+                        <i class="fas fa-eye"></i> View
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+  
+            <!-- No Orders Message -->
+            <div class="text-center mt-3" *ngIf="orders.length === 0">
+              <p class="text-muted">You have not placed any orders yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

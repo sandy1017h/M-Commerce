@@ -3,13 +3,13 @@
     <h2 class="title" style="text-align: center;">Business Account Signup</h2>
     
         <mat-horizontal-stepper #stepper [linear]="true">
-            <!-- Step 1: Business Information -->
-            <mat-step [stepControl]="businessForm">
+        <!-- Step 1: Business Information -->
+        <mat-step [stepControl]="businessForm">
                 <form [formGroup]="businessForm">
                     <ng-template matStepLabel>
-                    </ng-template>  
-                    <img src="https://i.ibb.co/G3x7LN9z/Contact-us-elements.png" class="step-icon" />
-                    Business Information
+                        <img src="https://i.ibb.co/G3x7LN9z/Contact-us-elements.png" class="step-icon" />
+                        Business Information
+                    </ng-template> 
                     <mat-form-field appearance="outline">
                         <mat-label>Business Name</mat-label>
                         <input matInput formControlName="businessName" required />
@@ -43,15 +43,14 @@
                         Next
                     </button>
                 </form>
-            </mat-step>
-    
-            <!-- Step 2: Contact Information -->
-            <mat-step [stepControl]="contactForm">
+        </mat-step>
+        <!-- Step 2: Contact Information -->
+        <mat-step [stepControl]="contactForm">
                 <form [formGroup]="contactForm">
                     <ng-template matStepLabel>
+                        <img src="https://i.ibb.co/nNMhz3Vr/Influencer-marketing-concept-with-finger-pointing.png" class="step-icon" />
+                        Contact Information
                     </ng-template>
-                    <img src="https://i.ibb.co/nNMhz3Vr/Influencer-marketing-concept-with-finger-pointing.png" class="step-icon" />
-                    Contact Information
                     <mat-form-field appearance="outline">
                         <mat-label>Email Address</mat-label>
                         <input matInput type="email" formControlName="email" required />
@@ -91,16 +90,73 @@
                             Address is required
                         </mat-error>
                     </mat-form-field>
-    
                     <button mat-raised-button color="primary" (click)="stepper.previous()">Back</button>
                     <button class="mx-2" mat-raised-button color="primary" (click)="stepper.next()" [disabled]="contactForm.invalid">
                         Next
                     </button>
-                    <button class="mx-2" mat-raised-button color="primary" (click)="onSubmit()" [disabled]="businessForm.invalid || contactForm.invalid">
-                        Submit
-                    </button>
                 </form>
-            </mat-step>
+        </mat-step>
+        <!-- Step 3: Payment Information -->
+        <mat-step [stepControl]="paymentForm">
+            <form [formGroup]="paymentForm">
+                <ng-template matStepLabel>
+                    <img src="https://i.ibb.co/TM5kLpbr/Online-payment-and-transaction.png" class="step-icon" />
+                    Payment Information
+                </ng-template>
+
+                <mat-radio-group formControlName="paymentMethod" (change)="onPaymentMethodChange($event)">
+                    <mat-radio-button value="creditcard">Pay with Credit Card</mat-radio-button>
+                    <mat-radio-button value="upi">Pay with UPI App</mat-radio-button><br>
+                </mat-radio-group>
+
+                <!-- Credit Card Payment Fields -->
+                <div *ngIf="paymentForm.value.paymentMethod === 'creditcard'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Credit Card Number</mat-label>
+                        <input matInput formControlName="cardNumber" required />
+                        <mat-error *ngIf="paymentForm.controls['cardNumber'].invalid">Enter a valid card number</mat-error>
+                    </mat-form-field>
+
+                    <div class="expiry-cvv">
+                        <mat-form-field appearance="outline" class="expiry-field">
+                            <mat-label>Expiry Date</mat-label>
+                            <mat-select formControlName="expiryMonth" required>
+                                <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="expiry-field">
+                            <mat-label>Year</mat-label>
+                            <mat-select formControlName="expiryYear" required>
+                                <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="cvv-field">
+                            <mat-label>CVV</mat-label>
+                            <input matInput type="password" formControlName="cvv" required />
+                            <mat-error *ngIf="paymentForm.controls['cvv'].invalid">Invalid CVV</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name on Card</mat-label>
+                        <input matInput formControlName="cardName" required />
+                    </mat-form-field>
+                </div>
+
+                <!-- UPI Payment Fields -->
+                <div *ngIf="paymentForm.value.paymentMethod === 'upi'">
+                    <div class="upi-options">
+                        <video src="https://cdnl.iconscout.com/lottie/premium/thumb/google-pay-animated-icon-download-in-lottie-json-gif-static-svg-file-formats--payment-dollar-currency-online-methods-pack-social-media-icons-6027209.mp4" class="upi-icon"  (click)="redirectToPayment('googlepay')" autoplay loop muted width="50" height="50" matTooltip="Pay with Google Pay"></video>
+                        <video src="https://cdnl.iconscout.com/lottie/premium/thumb/pay-with-phone-button-logo-animation-download-in-lottie-json-gif-static-svg-file-formats--paypal-card-payment-method-buttons-pack-logos-animations-8758441.mp4" class="upi-icon" (click)="redirectToPayment('phonepe')" autoplay loop muted width="50" height="50" matTooltip="Pay with PhonePe"></video>
+                        <video src="https://cdnl.iconscout.com/lottie/premium/thumb/paytm-payment-method-logo-animation-download-in-lottie-json-gif-static-svg-file-formats--online-shopping-bill-payments-bbps-methods-pack-business-animations-8906614.mp4" class="upi-icon" (click)="redirectToPayment('paytm')" autoplay loop muted width="50" height="50" matTooltip="Pay with Paytm"></video>
+                        <video src="https://cdnl.iconscout.com/lottie/premium/thumb/razor-pay-13656972-11004529.mp4" class="upi-icon" (click)="redirectToPayment('razorpay')" autoplay loop muted width="50" height="50" matTooltip="Pay with Razorpay"></video>
+                    </div>
+                </div>
+
+                <button class="mx-2" mat-raised-button color="primary" (click)="stepper.previous()">Back</button>
+                <button class="mx-2" mat-raised-button color="accent" (click)="onSubmit()" [disabled]="paymentForm.invalid">Submit</button>
+            </form>
+        </mat-step>
         </mat-horizontal-stepper>
     </mat-card>
 </body>

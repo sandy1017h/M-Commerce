@@ -39,6 +39,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
 import { BusinessAccDashboardRoutingModule } from './business-acc-dashboard/business-acc-dashboard-routing.module';
 import { BusinessAccDashboardModule } from './business-acc-dashboard/business-acc-dashboard.module';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { BusinessAccDashboardModule } from './business-acc-dashboard/business-ac
     HomeComponent,
     CheckoutComponent,
     UserDetailsComponent,
+    OrdersComponent
    
   ],
   imports: [

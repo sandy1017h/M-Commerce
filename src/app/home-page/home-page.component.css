@@ -688,8 +688,9 @@ ul li input {
   position: relative;
   z-index: 1000;
   width: 20px;
-  height: 25px;
+  height:150px;
   margin: 0 5px;
+  cursor:pointer;
 }
 
 ul li .slide {
@@ -726,7 +727,7 @@ ul li .slide .left.left-face img {
   top: 30px;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 89%;
   object-fit: cover;
 }
 
@@ -1239,4 +1240,137 @@ a [class^=icon-] {
   .collapse:not(.show) {
       display: block !important;
   }
+}
+
+
+
+/* Footer */
+
+
+footer {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: #ffffff;
+  padding: 40px 10%;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+
+.footer-logo img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.footer-logo p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.footer-links h3,
+.footer-subscribe h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #acc7a6 !important;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin: 8px 0;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  opacity: 0.8;
+  transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+  color: #ffbe0b;
+}
+
+.footer-subscribe form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-subscribe input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 70%;
+  outline: none;
+}
+
+.footer-subscribe button {
+  padding: 10px 15px;
+  border: none;
+  background: #ffbe0b;
+  color: #000;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.footer-subscribe button:hover {
+  background: #ff9f1c;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 15px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #ffffff;
+  font-size: 20px;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: #ffbe0b;
+}
+
+.online {
+  color: #ff8c00;
+  font-style: italic;
+  text-align: center;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.mit-online-text {
+  font-family: Arial, sans-serif;
+  font-size: 35px;
+  font-weight: bold;
+  color: #00bfff !important;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: inline;
+  text-decoration: underline;
+  cursor: pointer;
 }

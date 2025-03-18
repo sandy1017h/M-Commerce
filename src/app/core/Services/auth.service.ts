@@ -175,6 +175,7 @@ export class AuthService {
   setLoggedInUser(user: UserDto): void {
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.userDetail.next(user);
+    this.loggedInSubject.next(true);
   }
 
   getUserById(UserId: number): Observable<UserDto> {
@@ -234,6 +235,7 @@ export class AuthService {
           this.clearSession();
           localStorage.removeItem('userRole');
     this.isUserLoggedIn.next(false);
+    this.userDetail.next(null);
           console.log("Logout successful");
         } else {
           console.error("Logout failed:", res.message);

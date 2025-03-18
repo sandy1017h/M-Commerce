@@ -35,12 +35,12 @@ export class HeaderComponent implements OnInit{
   }
 
   placeholders = [
-    "Search for Grocery Brands and more...",
-    "Search for Mobiles Brands and more...",
-    "Search for Fashion Brands and more...",
-    "Search for Home and Furniture Brands and more...",
-    "Search for Electronics Brands and more...",
-    "Search for Healthcare Items Brands and more..."
+    "Search for SmartPhone Brands and more...",
+    "Search for Gaming Phone Brands and more...",
+    "Search for Foldable Brands and more...",
+    "Search for Budget and Brands and more...",
+    "Search for Camera Brands and more...",
+    "Search for Connectivity Brands and more..."
   ];
 
   placeholderStyles = [
@@ -80,6 +80,13 @@ export class HeaderComponent implements OnInit{
       this.isLoggedIn = isLoggedIn;
     });
 
+    this.auth.loggedIn$.subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+      this.getCurrentUser(); // Fetch user details when login state changes
+    });
+  
+ 
+
     const user = this.auth.getLoggedInUser();
     if (user) {
       this.UserId = user.userId; // Ensure user object has an `id` property
@@ -91,6 +98,7 @@ export class HeaderComponent implements OnInit{
     });
     this.isAdmin = this.auth.isAdmin();
 
+    this.getCurrentUser();
   }
 
   getCurrentUser() {
