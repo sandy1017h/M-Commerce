@@ -55,7 +55,7 @@
   /* text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); */
   display: inline;
   text-decoration: underline;
-  /* cursor: pointer; */
+  cursor: pointer;
   height: 37px;
 }
 
@@ -80,7 +80,7 @@
   font-style: italic;
   text-align: center;
   text-decoration: underline;
-  /* cursor: pointer; */
+  cursor: pointer;
 }
 
 

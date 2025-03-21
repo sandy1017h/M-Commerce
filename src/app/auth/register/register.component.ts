@@ -2,6 +2,7 @@ import { Component, OnInit , signal} from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ResponseDto } from 'src/app/core/Models/response';
+import { AlertService } from 'src/app/core/Services/alert.service';
 import { AuthService } from 'src/app/core/Services/auth.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { AuthService } from 'src/app/core/Services/auth.service';
 export class RegisterComponent implements OnInit {
   RegistrationForm!:FormGroup;
  
-  constructor(private fb:FormBuilder,private authService:AuthService,private router:Router){}
+  constructor(private fb:FormBuilder,private authService:AuthService,private router:Router,private alertService: AlertService){}
 
   ngOnInit(): void {
     this.RegistrationForm = this.fb.group({
@@ -35,6 +36,7 @@ export class RegisterComponent implements OnInit {
         next:(res:ResponseDto<null>)=>{
           if(res.isSuccessed){
             this.router.navigateByUrl('/login');
+            this.alertService.default('Successfully Registered');
           }
           else{
             alert(res.message)

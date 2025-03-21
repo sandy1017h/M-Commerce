@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, inject, OnInit, HostListener  } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, inject, OnInit, HostListener } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CarouselModule as owlCarouselModule } from 'ngx-owl-carousel-o';
@@ -161,42 +161,45 @@ export class HomePageComponent implements OnInit {
 
   slides = [
     {
-        src: 'https://img.freepik.com/free-vector/instagram-sales-stories-collection_23-2148335695.jpg?t=st=1740402807~exp=1740406407~hmac=7236bd7ca39d9c7bf9a38e31d1ab1caf66e0ed851d5072b6f8570440e294c029&w=1380',
-        alt: 'Image 1',
-        heading: 'Big Sale!',
-        description: 'Get up to 50% off on selected items.'
+      src: 'https://img.freepik.com/free-vector/twitch-banner-template-cyber-monday_23-2149707776.jpg?t=st=1742376854~exp=1742380454~hmac=b98c266284d568dde5119a50f5dcf1b285e6e3b7ade15305e1e0dad22ac635a7&w=1380',
+      alt: 'Image 1',
+      heading: 'Big Sale!',
+      description: 'Get up to 50% off on selected items.'
     },
     {
-        src: 'https://justclickshop.com.sg/wp-content/uploads/2023/08/best-ecommerce-website-templates.jpg',
-        alt: 'Image 2',
-        heading: 'Exclusive Offers',
-        description: 'Hurry, offers valid until midnight!'
+      src: 'https://justclickshop.com.sg/wp-content/uploads/2023/08/best-ecommerce-website-templates.jpg',
+      alt: 'Image 2',
+      heading: 'Exclusive Offers',
+      description: 'Hurry, offers valid until midnight!'
     },
     {
-        src: 'https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/09/cover-8.jpg?ssl=1&quality=80&w=f',
-        // src: 'https://images.unsplash.com/photo-1587131664239-885aa135f8a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDMyfHx8ZW58MHx8fHx8',
-        alt: 'Image 3',
-        heading: 'New Arrivals',
-        description: 'Shop the latest trends now.'
+      src: 'https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/09/cover-8.jpg?ssl=1&quality=80&w=f',
+      // src: 'https://images.unsplash.com/photo-1587131664239-885aa135f8a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDMyfHx8ZW58MHx8fHx8',
+      alt: 'Image 3',
+      heading: 'New Arrivals',
+      description: 'Shop the latest trends now.'
     }
-];
+  ];
 
-currentSlide = 0;
+  currentSlide = 0;
 
-navigate(direction: string) {
+  navigate(direction: string) {
     if (direction === 'left') {
-        this.currentSlide =
-            (this.currentSlide - 1 + this.slides.length) %
-            this.slides.length;
+      this.currentSlide =
+        (this.currentSlide - 1 + this.slides.length) %
+        this.slides.length;
     } else if (direction === 'right') {
-        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+      this.currentSlide = (this.currentSlide + 1) % this.slides.length;
     }
-}
+  }
 
-goToSlide(index: number) {
+  goToSlide(index: number) {
     this.currentSlide = index;
-}
+  }
   ngOnInit() {
+
+    this.openModal();
+
     setInterval(() => {
       this.navigate('right');
     }, 5000);
@@ -239,7 +242,7 @@ goToSlide(index: number) {
   scrollToBottom(): void {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+
 
 
   activate(e: Event): void {
@@ -253,5 +256,26 @@ goToSlide(index: number) {
       }
     }
   }
-  
+
+
+  openModal(): void {
+    const modal = document.getElementById('id01') as HTMLElement;
+    if (modal) {
+      modal.style.display = 'block';
+    }
+
+    document.addEventListener("keydown", ({ key }) => {
+      if (key === "Escape" && modal.style.display === "block") {
+        modal.style.display = "none";
+      }
+    });
+  }
+
+  closeModal(): void {
+    const modal = document.getElementById('id01') as HTMLElement;
+    if (modal) {
+      modal.style.display = "none";
+    }
+  }
+
 }

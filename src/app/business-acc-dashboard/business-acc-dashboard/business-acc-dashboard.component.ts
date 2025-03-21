@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import ApexCharts from 'apexcharts';
 
 @Component({
@@ -34,6 +35,10 @@ export class BusinessAccDashboardComponent implements AfterViewInit {
     { orderId: 'ORD010', customer: 'Emma Martin', product: 'Speaker', amount: '$200', status: 'Shipped' }
   ]);
 
+  constructor(private router: Router) {
+
+   }
+
   topProductsData = new MatTableDataSource([
     { product: 'Laptop', price: '$1200', sold: '500', revenue: '$600,000' },
     { product: 'Smartphone', price: '$800', sold: '700', revenue: '$560,000' },
@@ -53,6 +58,14 @@ export class BusinessAccDashboardComponent implements AfterViewInit {
     this.recentOrdersData.paginator = this.paginator1;
     this.topProductsData.paginator = this.paginator2;
   }
+
+  onProductChange(event: any) {
+    const selectedValue = event.target.value;
+    if (selectedValue === 'add-product') {
+      this.router.navigate(['/addproducts']);
+    }
+  }
+  
 
   private initializeNavigation(): void {
     const navLinks: NodeListOf<HTMLLIElement> = document.querySelectorAll('.nav-links li');

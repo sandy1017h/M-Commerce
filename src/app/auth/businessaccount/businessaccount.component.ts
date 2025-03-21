@@ -14,6 +14,10 @@ import { AuthService } from 'src/app/core/Services/auth.service';
 import { ResponseDto } from 'src/app/core/Models/response';
 import { AlertService } from 'src/app/core/Services/alert.service';
 
+declare var $: any;
+declare var WOW: any;
+declare var Razorpay: any;
+
 @Component({
   selector: 'app-businessaccount',
   templateUrl: './businessaccount.component.html',
@@ -38,6 +42,9 @@ export class BusinessaccountComponent {
   businessForm: FormGroup;
   contactForm: FormGroup;
   paymentForm: FormGroup;
+
+  amount: number = 0;
+
 
   months: string[] = [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
@@ -148,6 +155,45 @@ export class BusinessaccountComponent {
       this.businessForm.markAllAsTouched();
       this.contactForm.markAllAsTouched();
     }
+  }
+
+  payNow() {
+    const RozarpayOptions = {
+      description: 'Sample Razorpay demo',
+      currency: 'INR',
+      amount: this.amount,
+      name: 'Ashok',
+      key: 'rzp_test_FjzUpnjxof6pQr', 
+      image: 'https://i.imgur.com/FApqk3D.jpeg',
+      // prefill: {
+      //   name: this.form.value.Name,
+      //   email: this.form.value.Email,
+      //   contact: this.form.value.Phone,
+      // },
+      theme: {
+        color: '#6466e3'
+      },
+      handler: (response: any) => {
+        console.log('Payment Successful:', response);
+        alert('Payment Successful!');
+        this.router.navigate(['/login']);
+      },
+      modal: {
+        ondismiss:  () => {
+          console.log('dismissed')
+        }
+      }
+    }
+    const successCallback = (paymentId: any) => {
+      console.log(paymentId);
+      // this.fetchPaymentDetails(paymentId);
+    }
+ 
+    const failureCallback = (e: any) => {
+      console.log(e);
+    }
+ 
+    Razorpay.open(RozarpayOptions,successCallback, failureCallback)
   }
   
 }

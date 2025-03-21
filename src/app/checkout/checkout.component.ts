@@ -40,8 +40,9 @@ export class CheckoutComponent implements OnInit{
 
   constructor(
     @Inject(BASE_IMAGE_API) public imageUrl: string,  private router: Router,
-    private store:Store<AppState>,private route: ActivatedRoute, private authService: AuthService, private fb: FormBuilder,
-        private addressService: AddressService,private catalogService:CatalogService
+    private store:Store<AppState>,private route: ActivatedRoute, 
+    private authService: AuthService, private fb: FormBuilder,
+    private addressService: AddressService,private catalogService:CatalogService
   ){
     this.cart$=this.store.select(selectCartProperty);
     const loginUser = JSON.parse(localStorage.getItem('currentUser')!);    
@@ -136,7 +137,7 @@ export class CheckoutComponent implements OnInit{
       currency: 'INR',
       amount: this.amount,
       name: 'Ashok',
-      key: 'rzp_test_FjzUpnjxof6pQr', 
+      key: 'rzp_test_Bei5VTuZ2Tb1qg', 
       image: 'https://i.imgur.com/FApqk3D.jpeg',
       // prefill: {
       //   name: this.form.value.Name,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CategoryResDto } from 'src/app/core/Models/catalog';
@@ -8,6 +8,7 @@ import { selectCategories } from 'src/app/redux/catalog/catalog.selector';
 import { AppState } from 'src/app/redux/store';
 import { CartReducer } from 'src/app/redux/cart/cart.reducer';
 import { selectCartProperty } from 'src/app/redux/cart/cart.selector';
+import { AlertService } from 'src/app/core/Services/alert.service';
 
 @Component({
   selector: 'app-header',
@@ -17,14 +18,13 @@ import { selectCartProperty } from 'src/app/redux/cart/cart.selector';
 export class HeaderComponent implements OnInit{
   isLoggedIn = false;
   categories$: Observable<CategoryResDto[]>;
-  router: any;
   user: any;
   UserId: number | null = null;
   currentUser: any = null;   
   cartItemCount: number = 0;
   isAdmin: boolean = false;
 
-  constructor(private store: Store<AppState>, public auth: AuthService) {
+  constructor(private store: Store<AppState>, public auth: AuthService,private alertService: AlertService,private router:Router) {
     this.categories$ = this.store.select(selectCategories);
     const loginUser = JSON.parse(localStorage.getItem('currentUser')!);    
     // this.UserId = loginUser.userId;
@@ -107,6 +107,14 @@ export class HeaderComponent implements OnInit{
   
     if (!this.currentUser || !this.currentUser.userId) {
       console.warn('No user data found');
+    }
+  }
+
+  navigateToHome(){
+    if(this.isLoggedIn){
+      this.router.navigate(['/home']);
+    }else{
+      this.alertService.error("Please log in to access Mit-Online.");
     }
   }
 
