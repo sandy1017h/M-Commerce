@@ -40,6 +40,9 @@ import { CommonModule } from '@angular/common';
 import { BusinessAccDashboardRoutingModule } from './business-acc-dashboard/business-acc-dashboard-routing.module';
 import { BusinessAccDashboardModule } from './business-acc-dashboard/business-acc-dashboard.module';
 import { OrdersComponent } from './orders/orders.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { MatCardModule } from '@angular/material/card';
+import { ProductsModule } from './products/products.module';
 
 @NgModule({
   declarations: [
@@ -47,8 +50,8 @@ import { OrdersComponent } from './orders/orders.component';
     HomeComponent,
     CheckoutComponent,
     UserDetailsComponent,
-    OrdersComponent
-   
+    OrdersComponent,
+    HomePageComponent   
   ],
   imports: [
     BusinessAccDashboardModule,
@@ -72,6 +75,8 @@ import { OrdersComponent } from './orders/orders.component';
     ButtonModule,
     MatIconModule,
     CommonModule,
+    MatCardModule,
+    ProductsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('accestoken'),

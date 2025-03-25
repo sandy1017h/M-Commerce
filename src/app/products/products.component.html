@@ -1,12 +1,12 @@
 <div class="bg-img">
-    <div class="row" style="width: 100%;overflow-y: hidden !important">
-        <div class="col-3">
+    <div class="row" style="width: 100%;overflow-y: hidden !important;">
+        <div class="col-3" style="border: 6px solid rgb(240,242,249);">
                 <app-filters 
                 [minPrice]="minPrice" 
                 [maxPrice]="maxPrice" 
                 (filtersChanged)="filtersChanged($event)"></app-filters>   
         </div>
-        <div class="col-9">
+        <div class="col-9" style="border: 6px solid rgb(240,242,249);">
             <app-sort-header (sortHeaderChanges)="sortFiltersChanged($event)"></app-sort-header>
             <div class="product-grid-3 mt-5 mb-5">
                 <app-product-card *ngFor="let p of products" [product]="p"></app-product-card>

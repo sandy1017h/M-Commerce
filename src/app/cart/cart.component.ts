@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { ShoppingCart } from '../core/Models/Cart';
 import { loadCart, RemoveCartItem, UpdateCartItem } from '../redux/cart/cart.action';
 import { SharedModule } from '../shared/shared.module';
+import AOS from 'aos';
+
 
 @Component({
   standalone:true,
@@ -27,6 +29,12 @@ export class CartComponent implements OnInit {
   }
   ngOnInit(): void {
     this.store.dispatch(loadCart());
+     AOS.init({
+          duration: 2000,
+          once: false,
+          delay: 200,
+          mirror: true,
+        });
   }
   updateCartItem(cartItemId:number,quantity:number){
      this.store.dispatch(UpdateCartItem({cartItemId,quantity}))

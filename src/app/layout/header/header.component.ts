@@ -34,13 +34,14 @@ export class HeaderComponent implements OnInit{
 
   }
 
+
   placeholders = [
-    "Search for SmartPhone Brands and more...",
-    "Search for Gaming Phone Brands and more...",
-    "Search for Foldable Brands and more...",
-    "Search for Budget and Brands and more...",
-    "Search for Camera Brands and more...",
-    "Search for Connectivity Brands and more..."
+    "Search for Grocery Brands and more...",
+    "Search for Mobiles Brands and more...",
+    "Search for Fashion Brands and more...",
+    "Search for Home and Furniture Brands and more...",
+    "Search for Electronics Brands and more...",
+    "Search for Healthcare Items Brands and more..."
   ];
 
   placeholderStyles = [

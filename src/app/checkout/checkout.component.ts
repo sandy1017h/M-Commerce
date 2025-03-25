@@ -13,6 +13,10 @@ import { AddressService } from '../core/Services/address.service';
 import { Address } from '../core/Models/Address';
 import { CatalogService } from 'src/app/core/Services/catalog.service';
 import { ProductResDto } from 'src/app/core/Models/catalog';
+import AOS from 'aos';
+import { AlertService } from '../core/Services/alert.service';
+
+
 
 declare var $: any;
 declare var WOW: any;
@@ -42,7 +46,8 @@ export class CheckoutComponent implements OnInit{
     @Inject(BASE_IMAGE_API) public imageUrl: string,  private router: Router,
     private store:Store<AppState>,private route: ActivatedRoute, 
     private authService: AuthService, private fb: FormBuilder,
-    private addressService: AddressService,private catalogService:CatalogService
+    private addressService: AddressService,private catalogService:CatalogService,
+    private alertservice: AlertService
   ){
     this.cart$=this.store.select(selectCartProperty);
     const loginUser = JSON.parse(localStorage.getItem('currentUser')!);    
@@ -64,6 +69,7 @@ export class CheckoutComponent implements OnInit{
     this.route.queryParams.subscribe(params => {
       this.amount = params['amount'] ? parseFloat(params['amount']) : 0;
     });
+
   }
 
   getCurrentUser() {
@@ -103,7 +109,7 @@ export class CheckoutComponent implements OnInit{
 
   buyNow() {
     if (this.selectedAddressIndex === null) {
-      alert('Please select an address before proceeding.');
+      this.alertservice.error('Please select an address before proceeding.');
       return;
     }
     this.payNow();

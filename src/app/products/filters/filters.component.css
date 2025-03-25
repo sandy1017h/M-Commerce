@@ -1,12 +1,14 @@
 .filter-container{
     padding: 0rem 1rem;
-    border: 2px solid rgb(238, 236, 234);
-
-    /* border-radius: 1rem; */
-    /* background-image: url('https://i.ibb.co/N67BHRH5/profile-background.png');
+    /* border: 8px solid rgb(240,242,245); */
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;  */
+    background-repeat: no-repeat;
+    padding: 9px;
+    color: #212121;
+    role:generic;
+    contrast: 16.1em;
+    font-style: bold;
 }
 .filter-section{
     margin: 1rem 0rem;
@@ -35,4 +37,12 @@
 .mat-button-toggle-checked{
     color: white!important;
     background-color: var(--primary-color)!important;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        background-color: #f1f3f6;
+        color: #212121;
+        line-height: 1.4;
 }

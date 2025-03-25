@@ -14,7 +14,7 @@ export class AlertService {
 
   default(message: string, config: MatSnackBarConfig | null = null) {
     let snackbarConfig: MatSnackBarConfig = { 
-      duration: 5000, 
+      duration: 2000, 
       verticalPosition: 'top', 
       horizontalPosition: 'center', 
       panelClass: 'customAlertClass' 
@@ -29,7 +29,7 @@ export class AlertService {
 
   error(message: string, config: MatSnackBarConfig | null = null) {
     let snackbarConfig: MatSnackBarConfig = { 
-      duration: 4000, 
+      duration: 2000, 
       verticalPosition: 'top', 
       horizontalPosition: 'center', 
       panelClass: 'customAlertClass_Error' 

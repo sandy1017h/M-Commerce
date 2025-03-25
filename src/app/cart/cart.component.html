@@ -11,7 +11,7 @@
         <ng-container *ngIf="cart$ | async as cart">
             <ng-container *ngIf="cart.shoppingCartItems.length > 0; else emptyCart">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-8" data-aos="fade-right">
                         <ul class="list-group">
                             <li class="list-group-item" *ngFor="let item of cart.shoppingCartItems">
                                 <div class="row align-items-center">
@@ -46,7 +46,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-4" data-aos="fade-left">
                         <mat-card>
                             <mat-card-header class="fw-bold mb-3">Summary</mat-card-header>
                             <mat-card-content>

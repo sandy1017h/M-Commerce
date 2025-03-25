@@ -163,7 +163,7 @@ export class BusinessaccountComponent {
       currency: 'INR',
       amount: this.amount,
       name: 'Ashok',
-      key: 'rzp_test_FjzUpnjxof6pQr', 
+      key: 'rzp_test_Bei5VTuZ2Tb1qg', 
       image: 'https://i.imgur.com/FApqk3D.jpeg',
       // prefill: {
       //   name: this.form.value.Name,

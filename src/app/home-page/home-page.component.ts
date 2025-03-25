@@ -12,21 +12,13 @@ import { selectCategories } from '../redux/catalog/catalog.selector';
 import { BASE_IMAGE_API } from '../core/token/baseUrl.token';
 import { ProductsModule } from '../products/products.module';
 import { CatalogService } from '../core/Services/catalog.service';
-
+import AOS from 'aos';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
-  standalone: true,
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
-  imports: [
-    CommonModule,
-    CarouselModule,
-    owlCarouselModule,
-    MatCardModule,
-    ProductsModule
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
 })
 export class HomePageComponent implements OnInit {
@@ -173,7 +165,7 @@ export class HomePageComponent implements OnInit {
       description: 'Hurry, offers valid until midnight!'
     },
     {
-      src: 'https://i0.wp.com/www.smartprix.com/bytes/wp-content/uploads/2024/09/cover-8.jpg?ssl=1&quality=80&w=f',
+      src: 'https://img.freepik.com/free-vector/flat-super-sale-banner-with-photo_23-2149026967.jpg?t=st=1742644128~exp=1742647728~hmac=963b2f7806cb3415575afc11ec506ea66a9d62f22c75dd05861dd620b74a5c3a&w=1480',
       // src: 'https://images.unsplash.com/photo-1587131664239-885aa135f8a6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDMyfHx8ZW58MHx8fHx8',
       alt: 'Image 3',
       heading: 'New Arrivals',
@@ -198,12 +190,27 @@ export class HomePageComponent implements OnInit {
   }
   ngOnInit() {
 
-    this.openModal();
+    // this.openModal();
+
+    AOS.init({
+      duration: 2000,
+      once: false,
+      delay: 200,
+      mirror: true,
+    });
 
     setInterval(() => {
       this.navigate('right');
     }, 5000);
   }
+
+  ngafterViewInit() {
+      AOS.init({
+      duration: 5000, // Smooth animation
+      once: true, // Animation occurs only once
+    });
+  }
+
 
   updateCSSVariable(): void {
     document.documentElement.style.setProperty(

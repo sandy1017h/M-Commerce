@@ -22,7 +22,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        component: HomePageComponent
+        component: LoginComponent
       },
       {
         path: "home",

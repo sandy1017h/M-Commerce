@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/core/Services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddressService } from '../core/Services/address.service';
 import { Address } from '../core/Models/Address';
+import AOS from 'aos';
+import { AlertService } from '../core/Services/alert.service';
 
 @Component({
   selector: 'app-user-details',
@@ -29,7 +31,7 @@ export class UserDetailsComponent implements OnInit{
     this.activeTab = tabName;
   }
   constructor(private route: ActivatedRoute, private authService: AuthService, private fb: FormBuilder,
-    private addressService: AddressService
+    private addressService: AddressService,private alertservice: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +62,13 @@ export class UserDetailsComponent implements OnInit{
       userId: [null, Validators.required], // Assuming userId is required
     });
     this.getUserAddresses();
+
+    AOS.init({
+      duration: 2000,
+      once: false,
+      delay: 200,
+      mirror: true,
+    });    
   }
 
   getUserAddresses(): void {
@@ -137,12 +146,12 @@ export class UserDetailsComponent implements OnInit{
       this.addressService.updateAddress(addressId, updatedData).subscribe({
         next: (response) => {
           console.log('API Response:', response);
-          alert('Address updated successfully!');
-          this.showAddUpdateAddressForm = false; // Hide form after update
+          this.alertservice.default('Address updated successfully!');
+          this.showAddUpdateAddressForm = false;
         },
         error: (err) => {
           console.error('Update failed:', err);
-          alert('Failed to update address.');
+          this.alertservice.error('Failed to update address.');
         },
       });
     }
@@ -187,14 +196,14 @@ export class UserDetailsComponent implements OnInit{
 
       this.addressService.addAddress(newAddress).subscribe({
         next: (response) => {
-          alert('Address added successfully!');
+          this.alertservice.default('Address added successfully!');
           this.addressForm.reset();
           window.location.reload();
           this.showAddAddressForm = false; 
         },
         error: (err) => {
           console.error('Error adding address:', err);
-          alert('Failed to add address');
+          this.alertservice.error('Failed to add address');
         }
       });
     }
@@ -203,7 +212,7 @@ export class UserDetailsComponent implements OnInit{
   deleteAddress(id: number) {
     if (confirm('Are you sure you want to delete this address?')) {
       this.addressService.deleteAddress(id).subscribe(() => {
-        alert('Address deleted successfully!');
+        this.alertservice.default('Address deleted successfully!');
         this.addresses = this.addresses.filter(a => a.id !== id); // Remove from list
       });
     }
