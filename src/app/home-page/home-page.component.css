@@ -279,6 +279,69 @@
 }
 
 
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  padding: 10px 20px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  /* background-image: linear-gradient(45deg, #ff6f00, #e65100, #ff4081, #8e24aa); */
+  animation: gradientMove 3s infinite alternate;
+  transition: color 0.3s ease-in-out;
+  cursor: pointer;
+  margin-top: 40px !important;
+}
+
+/* Moving gradient effect */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Background loading effect on hover */
+.section-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(to right, #ff6f00, #e65100);
+  transition: width 0.5s ease-in-out;
+  z-index: -1;
+  /* border-radius: 30px; */
+}
+
+/* Expand the background from left to right on hover */
+.section-title:hover::before {
+  width: 100%;
+}
+
+/* Change text color to white on hover */
+.section-title:hover {
+  color: white !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Blinking stars effect */
+.star {
+  animation: blink 0.2s infinite alternate;
+}
+
+/* Alternate blinking effect */
+@keyframes blink {
+  0% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+
 /* //........ Collections ........// */
 
 .collections {

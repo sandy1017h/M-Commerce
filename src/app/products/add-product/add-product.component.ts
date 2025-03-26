@@ -46,12 +46,12 @@ export class AddProductComponent implements OnInit {
       categoryId: ['', Validators.required],
       brandId: ['', Validators.required],
       thumbnail: [null],
-      ram: ['', Validators.required],
-      storage: ['', Validators.required],
-      displaySize: ['', Validators.required],
-      processor: ['', Validators.required],      
-      warranty: ['', Validators.required],       
-      batteryCapacity: ['', Validators.required] 
+      // ram: ['', Validators.required],
+      // storage: ['', Validators.required],
+      // displaySize: ['', Validators.required],
+      // processor: ['', Validators.required],      
+      // warranty: ['', Validators.required],       
+      // batteryCapacity: ['', Validators.required] 
     });
   }
 
