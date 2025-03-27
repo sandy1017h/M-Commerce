@@ -1,4 +1,4 @@
 export interface ImageDtoRes {
     id: number;
-    imageUrl: string;
+    url: string;
 }

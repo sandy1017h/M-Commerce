@@ -10,7 +10,7 @@ export class RenderimgPipe implements PipeTransform {
     if (typeof value !== 'string') {
       return value;
     }
-      return this.imageUrl+ value;
+      return  value;
   }
 
 }

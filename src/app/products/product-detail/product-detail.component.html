@@ -1,6 +1,6 @@
 <div *ngIf="product" class="product-container container w-75 mt-5">
     <div class="image-section">
-        <img [src]="product.thumbnail?.imageUrl|renderimg" alt="Product Image" class="main-image">
+        <img [src]="product.thumbnail?.url|renderimg" alt="Product Image" class="main-image">
         <!-- <div class="thumbnail-container">
             <img src="image.png" alt="Thumbnail 1" class="thumbnail">
             <img src="image.png" alt="Thumbnail 2" class="thumbnail">
@@ -56,8 +56,8 @@
     </div>
   
     <!-- Product Image -->
-    <!-- <img mat-card-image [src]="imageUrl+product.thumbnail?.imageUrl" alt="{{ product.name }}"> -->
-    <img class="img-fluid" mat-card-image [src]="product.thumbnail?.imageUrl|renderimg" alt="{{ product.name }}">
+    <!-- <img mat-card-image [src]="imageUrl+product.thumbnail?.url" alt="{{ product.name }}"> -->
+    <img class="img-fluid" mat-card-image [src]="product.thumbnail?.url|renderimg" alt="{{ product.name }}">
 
     <!-- Action Buttons (View, Wishlist, Compare) -->
     <div class="action-icons">
