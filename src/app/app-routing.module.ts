@@ -14,6 +14,7 @@ import { BusinessaccountComponent } from './auth/businessaccount/businessaccount
 import { SellerPaymentComponent } from './auth/seller-payment/seller-payment.component';
 import { AddProductComponent } from './products/add-product/add-product.component';
 import { BusinessAccDashboardComponent } from './business-acc-dashboard/business-acc-dashboard/business-acc-dashboard.component';
+import { MyproductsComponent } from './products/myproducts/myproducts.component';
 
 const routes: Routes = [
   {
@@ -77,6 +78,11 @@ const routes: Routes = [
       {
         path:'sellpayment',
         component:SellerPaymentComponent,
+        pathMatch:'full'
+      },
+      {
+        path:'Myproductsdata',
+        component:MyproductsComponent,
         pathMatch:'full'
       },
     ]

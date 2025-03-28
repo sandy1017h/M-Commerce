@@ -1,8 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MyBrand } from 'src/app/core/Models/mybrand';
 import { MyCategory } from 'src/app/core/Models/mycategory';
+import { AlertService } from 'src/app/core/Services/alert.service';
+import { AuthService } from 'src/app/core/Services/auth.service';
 import { CatalogService } from 'src/app/core/Services/catalog.service';
 import { MybrandService } from 'src/app/core/Services/mybrand.service';
 import { MycategoryService } from 'src/app/core/Services/mycategory.service';
@@ -18,12 +21,8 @@ export class AddProductComponent implements OnInit {
   brands: MyBrand[] = [];
   categories: MyCategory[] = [];
   selectedFile: File | null = null;
-
-  // Define the missing properties
-  ramOptions: string[] = ['4GB', '6GB', '8GB', '12GB', '16GB'];
-  storageOptions: string[] = ['64GB', '128GB', '256GB', '512GB', '1TB'];
-  displaySizes: string[] = ['5.5"', '6.1"', '6.5"', '6.8"'];
   uploadedImages: File[] = [];
+
 
 
   constructor(
@@ -33,7 +32,10 @@ export class AddProductComponent implements OnInit {
     private categoryService: MycategoryService,
     private cdRef: ChangeDetectorRef,
     private http: HttpClient,
-    private catalogservice: CatalogService
+    private catalogservice: CatalogService,
+    private authService: AuthService,
+    private alertservice:AlertService,
+    private router:Router
   ) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
@@ -46,6 +48,7 @@ export class AddProductComponent implements OnInit {
       categoryId: ['', Validators.required],
       brandId: ['', Validators.required],
       thumbnail: [null],
+      // createdBy: [0],
       // ram: ['', Validators.required],
       // storage: ['', Validators.required],
       // displaySize: ['', Validators.required],
@@ -112,19 +115,28 @@ export class AddProductComponent implements OnInit {
       Object.keys(this.productForm.controls).forEach((key) => {
         const controlValue = this.productForm.get(key)?.value;
         if (controlValue !== null && controlValue !== undefined) {
-          formData.append(key, controlValue.toString());  // ✅ Ensure values are converted to strings
+          formData.append(key, controlValue.toString());
         }
       });
-  
+      
+      
+    const user = this.authService.getLoggedInUser();
+    if (user && user.userId) {
+      formData.append('createdBy', user.userId.toString());
+    } else {
+      console.error('User ID is missing, cannot set CreatedBy');
+    }
+      
       if (this.selectedFile) {
         formData.append('thumbnail', this.selectedFile);
-      }
-  
+      }  
+        
       this.productService.addProduct(formData).subscribe(
         (response) => {
           console.log('Product added successfully', response);
           this.productForm.reset();
-          alert('Product added successfully!');
+          this.alertservice.default('Product added successfully!');
+          this.router.navigate(['/busaccdashboard']);
         },
         (error) => {
           console.error('Error adding product', error);

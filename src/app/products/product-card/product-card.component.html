@@ -7,7 +7,9 @@
   
     <!-- Product Image -->
     <!-- <img mat-card-image [src]="imageUrl+product.thumbnail?.url" alt="{{ product.name }}"> -->
-    <img mat-card-image [src]="product.thumbnail?.url|renderimg" alt="{{ product.name }}">
+    <div class="product-image-container">
+      <img mat-card-image [src]="product.thumbnail?.url|renderimg" alt="{{ product.name }}">
+    </div>
 
     <!-- Action Buttons (View, Wishlist, Compare) -->
     <div class="action-icons">

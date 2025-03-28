@@ -24,6 +24,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { ProductCheckoutComponent } from './product-checkout/product-checkout.component';
 
 import { AddProductComponent } from './add-product/add-product.component';
+import { MyproductsComponent } from './myproducts/myproducts.component';
 
 
 
@@ -36,7 +37,8 @@ import { AddProductComponent } from './add-product/add-product.component';
     ProductCardComponent,
     ProductDetailComponent,
     ProductCheckoutComponent,
-    AddProductComponent
+    AddProductComponent,
+    MyproductsComponent,
   ],
   imports: [
     CommonModule,
@@ -56,7 +58,8 @@ import { AddProductComponent } from './add-product/add-product.component';
 
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
 
   ],
   exports:[

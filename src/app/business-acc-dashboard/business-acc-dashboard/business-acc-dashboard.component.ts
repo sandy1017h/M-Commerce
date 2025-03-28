@@ -62,7 +62,10 @@ export class BusinessAccDashboardComponent implements AfterViewInit {
   onProductChange(event: any) {
     const selectedValue = event.target.value;
     if (selectedValue === 'add-product') {
-      this.router.navigate(['/addproducts']);
+      this.router.navigate(['addproducts']);
+    }
+    if (selectedValue === 'my-products') {
+      this.router.navigate(['Myproductsdata']);
     }
   }
   

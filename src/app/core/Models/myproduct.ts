@@ -9,5 +9,6 @@ export interface MyProduct {
     categoryId: number;
     brandId: number;
     thumbnail?: File;
+    createdBy: number;
   }
   
