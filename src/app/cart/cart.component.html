@@ -9,19 +9,20 @@
         </div>
 
         <ng-container *ngIf="cart$ | async as cart">
-            <ng-container *ngIf="cart.shoppingCartItems.length > 0; else emptyCart">
+            <ng-container *ngIf="(cart?.shoppingCartItems?.length ?? 0) > 0; else emptyCart">
                 <div class="row">
                     <div class="col-8" data-aos="fade-right">
                         <ul class="list-group">
-                            <li class="list-group-item" *ngFor="let item of cart.shoppingCartItems">
+                            <li class="list-group-item" *ngFor="let item of cart?.items">
                                 <div class="row align-items-center">
                                     <div class="col-7">
                                         <div class="d-flex">
-                                            <img [src]="item.product.thumbnail?.url" 
-                                                 [alt]="item.product.name" class="icon-shape icon-xxl">
+                                            <img [src]="item.productImage || 'assets/default-image.png'"  
+                                                 [alt]="item.productName" class="icon-shape icon-xxl">
                                             <div class="pt-3">
-                                                <h5 class="mb-0 cart-item-title">{{ item.product.name }}</h5>
+                                                <h5 class="mb-0 cart-item-title">{{ item.productName }}</h5>
                                             </div>
+                                            {{ item.productName }}
                                         </div>
                                     </div>
                                     <div class="col-2">
@@ -33,8 +34,8 @@
                                     </div>
                                     <div class="col-2 text-lg-end text-start text-md-end">
                                         <div class="price">
-                                            <span class="current-price">{{ item.product.newPrice | currency: 'INR' }}</span>
-                                            <span class="old-price ng-star-inserted">{{ item.product.originalPrice | currency: 'INR' }}</span>
+                                            <span class="current-price">{{ item.price | currency: 'INR' }}</span>
+                                            <span class="old-price">{{ item.originalPrice | currency: 'INR' }}</span>
                                         </div>
                                     </div>
                                     <div class="col-1">
@@ -43,6 +44,7 @@
                                     </div>
                                 </div>
                             </li>
+                            
                         </ul>
                     </div>
 

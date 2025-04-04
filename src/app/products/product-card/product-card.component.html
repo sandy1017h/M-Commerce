@@ -8,7 +8,7 @@
     <!-- Product Image -->
     <!-- <img mat-card-image [src]="imageUrl+product.thumbnail?.url" alt="{{ product.name }}"> -->
     <div class="product-image-container">
-      <img mat-card-image [src]="product.thumbnail?.url|renderimg" alt="{{ product.name }}">
+      <img mat-card-image [src]="product.thumbnail?.url|renderimg" alt="{{ product.name }}" class="product-image">
     </div>
 
     <!-- Action Buttons (View, Wishlist, Compare) -->
@@ -39,5 +39,6 @@
       <button mat-raised-button matTooltip="Add To Cart" class="app-btn-primary" (click)="addToCart(product.id)">+ Add to Cart</button>
       <button mat-raised-button matTooltip="Buy Now" class="app-btn-buy-now ms-3" [routerLink]="['checkout',product.id]" >BUY NOW</button>
     </div>
-  </mat-card>
+</mat-card>
+
   

@@ -155,7 +155,7 @@ export class CheckoutComponent implements OnInit{
       },
       handler: (response: any) => {
         console.log('Payment Successful:', response);
-        alert('Payment Successful!');
+        this.alertservice.default('Payment Successful!');
         this.router.navigate(['user-profile/'+this.UserId]);
       },
       modal: {

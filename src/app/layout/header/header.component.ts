@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { CategoryResDto } from 'src/app/core/Models/catalog';
 import { AuthService } from 'src/app/core/Services/auth.service';
 import { selectCategories } from 'src/app/redux/catalog/catalog.selector';
@@ -9,6 +9,9 @@ import { AppState } from 'src/app/redux/store';
 import { CartReducer } from 'src/app/redux/cart/cart.reducer';
 import { selectCartProperty } from 'src/app/redux/cart/cart.selector';
 import { AlertService } from 'src/app/core/Services/alert.service';
+import { HttpClientModule } from '@angular/common/http';
+import { CartService } from 'src/app/core/Services/cart.service';
+import { loadCart } from 'src/app/redux/cart/cart.action';
 
 @Component({
   selector: 'app-header',
@@ -23,8 +26,11 @@ export class HeaderComponent implements OnInit{
   currentUser: any = null;   
   cartItemCount: number = 0;
   isAdmin: boolean = false;
+  cartItemCount$: Observable<number> = new Observable<number>();
+  productId: number = 0;
 
-  constructor(private store: Store<AppState>, public auth: AuthService,private alertService: AlertService,private router:Router) {
+  constructor(private store: Store<AppState>, public auth: AuthService,
+    private alertService: AlertService,private router:Router,private http: CartService) {
     this.categories$ = this.store.select(selectCategories);
     const loginUser = JSON.parse(localStorage.getItem('currentUser')!);    
     // this.UserId = loginUser.userId;
@@ -33,7 +39,6 @@ export class HeaderComponent implements OnInit{
 
 
   }
-
 
   placeholders = [
     "Search for Grocery Brands and more...",
@@ -93,13 +98,32 @@ export class HeaderComponent implements OnInit{
       this.UserId = user.userId; // Ensure user object has an `id` property
       console.log("User ID in HeaderComponent:", this.UserId);
     }
-    this.getCurrentUser();
-    this.store.select(selectCartProperty).subscribe(cart => {
-      this.cartItemCount = cart?.shoppingCartItems.length || 0;
+    this.http.getUserCart().subscribe((res) => {
+    // Assuming 'items' is the array of cart items
+    this.cartItemCount = res ? res['items'].length : 0;
+    console.log("Cart Item Count:", res);
+      
     });
+
+   this.http.cartcount(this.user.userId!).subscribe((res: any) => {
+   this.cartItemCount = res.count;
+   });
+   
+
     this.isAdmin = this.auth.isAdmin();
 
     this.getCurrentUser();
+    this.loadCartData()
+  }
+  
+  loadCartData() {
+    this.http.getUserCart().subscribe(res => {
+      this.cartItemCount = res ? (res.data?.items.length ?? 0) : 0;
+      console.log("Updated Cart Item Count:", this.cartItemCount);
+    });
+
+    // Also update the cart store
+    this.store.dispatch(loadCart());
   }
 
   getCurrentUser() {
@@ -109,6 +133,23 @@ export class HeaderComponent implements OnInit{
     if (!this.currentUser || !this.currentUser.userId) {
       console.warn('No user data found');
     }
+  }
+
+  cartcount(){
+    this.http.getUserCart().subscribe((res) => {
+      // Assuming 'items' is the array of cart items
+      this.cartItemCount = res ? res['items'].length : 0;
+      console.log("Cart Item Count:", res);
+        
+    });
+  }
+
+  truncateName(name: string): string {
+    return name.length > 13 ? name.slice(0, 13) + '...' : name;
+  }
+
+  getFullName(): string {
+    return `${this.currentUser.userName}`;
   }
 
   navigateToHome(){

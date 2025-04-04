@@ -30,7 +30,7 @@ export class SortHeaderComponent {
       sortCode:'newest'
     }
 ];
-
+  @Input() pageItems: number = 0; 
   @Input() itemsToShow:number=10;
   @Input() sortBy: string = 'featured';
 

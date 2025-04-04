@@ -1,13 +1,12 @@
 <div *ngIf="products.length > 0; else noProducts" class="product-list">
     <div *ngFor="let product of products" class="product-card">
-      <img [src]="product.thumbnail?.url || 'assets/default-image.png'" alt="{{ product.name }}" />
-      <h3>{{ product.name }}</h3>
-      <p>{{ product.description }}</p>
-      <p class="price">Price: ₹{{ product.originalPrice }}</p>
+        <img [src]="product.thumbnail?.url || 'assets/default-image.png'" alt="{{ product.name }}" />
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p class="price">Price: ₹{{ product.originalPrice }}</p>
     </div>
-  </div>
-  
-  <ng-template #noProducts>
+</div>
+
+<ng-template #noProducts>
     <p class="no-products">No products found.</p>
-  </ng-template>
-  
+</ng-template>

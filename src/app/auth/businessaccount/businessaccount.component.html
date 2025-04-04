@@ -106,11 +106,11 @@
 
                 <mat-radio-group formControlName="paymentMethod" (change)="onPaymentMethodChange($event)">
                     <mat-radio-button value="creditcard">Pay with Credit Card</mat-radio-button>
-                    <mat-radio-button value="upi">Pay with UPI App</mat-radio-button><br>
+                    <mat-radio-button value="upi">Pay with Razorpay</mat-radio-button><br>
                 </mat-radio-group>
 
                 <!-- Credit Card Payment Fields -->
-                <div *ngIf="paymentForm.value.paymentMethod === 'creditcard'">
+                <!-- <div *ngIf="paymentForm.value.paymentMethod === 'creditcard'">
                     <mat-form-field appearance="outline">
                         <mat-label>Credit Card Number</mat-label>
                         <input matInput formControlName="cardNumber" required />
@@ -141,14 +141,14 @@
                         <mat-label>Name on Card</mat-label>
                         <input matInput formControlName="cardName" required />
                     </mat-form-field>
-                </div>
+                </div> -->
 
                 <!-- UPI Payment Fields -->
                 <div *ngIf="paymentForm.value.paymentMethod === 'upi'">
                     <div class="upi-options">
-                        <video src="https://cdnl.iconscout.com/lottie/premium/thumb/google-pay-animated-icon-download-in-lottie-json-gif-static-svg-file-formats--payment-dollar-currency-online-methods-pack-social-media-icons-6027209.mp4" class="upi-icon"  (click)="redirectToPayment('googlepay')" autoplay loop muted width="50" height="50" matTooltip="Pay with Google Pay"></video>
+                        <!-- <video src="https://cdnl.iconscout.com/lottie/premium/thumb/google-pay-animated-icon-download-in-lottie-json-gif-static-svg-file-formats--payment-dollar-currency-online-methods-pack-social-media-icons-6027209.mp4" class="upi-icon"  (click)="redirectToPayment('googlepay')" autoplay loop muted width="50" height="50" matTooltip="Pay with Google Pay"></video>
                         <video src="https://cdnl.iconscout.com/lottie/premium/thumb/pay-with-phone-button-logo-animation-download-in-lottie-json-gif-static-svg-file-formats--paypal-card-payment-method-buttons-pack-logos-animations-8758441.mp4" class="upi-icon" (click)="redirectToPayment('phonepe')" autoplay loop muted width="50" height="50" matTooltip="Pay with PhonePe"></video>
-                        <video src="https://cdnl.iconscout.com/lottie/premium/thumb/paytm-payment-method-logo-animation-download-in-lottie-json-gif-static-svg-file-formats--online-shopping-bill-payments-bbps-methods-pack-business-animations-8906614.mp4" class="upi-icon" (click)="redirectToPayment('paytm')" autoplay loop muted width="50" height="50" matTooltip="Pay with Paytm"></video>
+                        <video src="https://cdnl.iconscout.com/lottie/premium/thumb/paytm-payment-method-logo-animation-download-in-lottie-json-gif-static-svg-file-formats--online-shopping-bill-payments-bbps-methods-pack-business-animations-8906614.mp4" class="upi-icon" (click)="redirectToPayment('paytm')" autoplay loop muted width="50" height="50" matTooltip="Pay with Paytm"></video> -->
                         <video (click)="payNow()" src="https://cdnl.iconscout.com/lottie/premium/thumb/razor-pay-13656972-11004529.mp4" class="upi-icon" autoplay loop muted width="50" height="50" matTooltip="Pay with Razorpay"></video>
                     </div>
                 </div>

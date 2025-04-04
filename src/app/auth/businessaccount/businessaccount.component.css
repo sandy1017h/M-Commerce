@@ -54,8 +54,8 @@ button:hover {
 }
 
 .upi-icon {
-    width: 130px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     cursor: pointer;
     transition: transform 0.3s ease;
     border-radius: 12px;

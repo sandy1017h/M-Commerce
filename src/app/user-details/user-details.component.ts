@@ -147,6 +147,7 @@ export class UserDetailsComponent implements OnInit{
         next: (response) => {
           console.log('API Response:', response);
           this.alertservice.default('Address updated successfully!');
+          location.reload();
           this.showAddUpdateAddressForm = false;
         },
         error: (err) => {

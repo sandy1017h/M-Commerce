@@ -1,11 +1,52 @@
-.product-grid-3{
+/* Product Grid Styling */
+.product-grid-3 {
     display: grid;
-    grid-template-columns: auto auto auto;
-    row-gap: 1rem;
+    grid-template-columns: repeat(3, 1fr); /* Ensures 3 columns */
+     /* Space between grid items */
 }
 .bg-img{ 
 /* background-image: url('https://i.ibb.co/LXpsF7S4/MITMITMIT.png'); */
 /* background-size: cover; */
 /* background-position: center;
 background-repeat: no-repeat; */
+}
+.main-container {
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Use flex for proper layout */
+}
+
+.sidebar {
+    height: 100vh; /* Full height */
+    overflow-y: auto; /* Enable scrolling */
+    padding: 27px;
+    border-right: 6px solid rgb(240,242,249); /* Adds border to the right */
+}
+
+/* Right Content (Product Listings) */
+.content {
+    height: 100vh; /* Full height */
+    overflow-x: hidden; /* Enable scrolling */
+    padding: 10px;
+}
+body, html {
+    overflow-x: hidden  !important  ; /* Prevents whole page scrolling */
+}
+
+.sidebar::-webkit-scrollbar,
+.content::-webkit-scrollbar {
+    width: 4px; /* Scrollbar width */
+    height: 2px; /* Scrollbar height */
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.content::-webkit-scrollbar-thumb {
+    background-color: #09c61f; /* Scrollbar thumb color */
+    border-radius: 4px;
+    width: 8px; /* Scrollbar width */
+    height: 3px; /* Scrollbar height */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover,
+.content::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Darker on hover */
 }

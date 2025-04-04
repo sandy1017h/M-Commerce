@@ -53,7 +53,8 @@ export class BusinessaccountComponent {
     '2025', '2026', '2027', '2028', '2029', '2030'  // Add more years as needed
   ];
 
-  constructor(private fb: FormBuilder,private authService:AuthService, private router:Router,private alertService:AlertService) {
+  constructor(private fb: FormBuilder,private authService:AuthService, private router:Router,
+    private alertService:AlertService,) {
     this.businessForm = this.fb.group({
       businessName: ['', Validators.required],
       businessType: ['', Validators.required],
@@ -175,7 +176,7 @@ export class BusinessaccountComponent {
       },
       handler: (response: any) => {
         console.log('Payment Successful:', response);
-        alert('Payment Successful!');
+        this.alertService.default('Payment Successful!');
         this.router.navigate(['/login']);
       },
       modal: {

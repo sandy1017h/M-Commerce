@@ -47,15 +47,17 @@
                 </button>
             </div>
             <div class="col-md-3 text-end d-flex justify-content-around" *ngIf="isLoggedIn">
-                <p *ngIf="currentUser" class="pt-2 welcome">Hello, <span class="userName">{{ currentUser?.userName
-                        }}</span> </p>
+                <h3 matTooltipPosition="above" *ngIf="currentUser" class="pt-2 welcome">
+                    Hello, 
+                    <span matTooltipPosition="above" class="userName"  [matTooltip]="getFullName()" >{{truncateName(currentUser?.userName) }}</span>
+                </h3>
                 <!-- <a aria-label="Add cart menu " routerLink="/cart" style="cursor: pointer;">
                                 <img src="../../../assets/add-to-cart.png" class="view-cart" alt="add Cart" >
                             </a> -->
 
                 <div class="nav-item cart-icon">
                     <a routerLink="/cart" class="nav-link">
-                        <img src="../../../assets/add-to-cart.png" class="view-cart" alt="add Cart">
+                        <img src="../../../assets/add-to-cart.png" class="view-cart" alt="add Cart" (click)="cartcount()">
                         <span class="cart-badge" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
                     </a>
                 </div>

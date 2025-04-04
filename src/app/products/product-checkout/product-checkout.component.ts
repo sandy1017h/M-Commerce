@@ -15,6 +15,7 @@ import { ProductDetailComponent } from '../product-detail/product-detail.compone
 import { CatalogService } from 'src/app/core/Services/catalog.service';
 import { ProductResDto } from 'src/app/core/Models/catalog';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/core/Services/alert.service';
 
 
 declare var $: any;
@@ -43,7 +44,8 @@ export class ProductCheckoutComponent implements OnInit{
   constructor(
     @Inject(BASE_IMAGE_API) public imageUrl: string,
     private store:Store<AppState>,private route: ActivatedRoute, private authService: AuthService, private fb: FormBuilder,
-        private addressService: AddressService,private catalogService:CatalogService,private router: Router
+        private addressService: AddressService,private catalogService:CatalogService,private router: Router,
+        private alertservice :AlertService
   ){
     this.cart$=this.store.select(selectCartProperty);
     const loginUser = JSON.parse(localStorage.getItem('currentUser')!);    
@@ -148,7 +150,7 @@ export class ProductCheckoutComponent implements OnInit{
       currency: 'INR',
       amount: this.amount,
       name: 'Ashok',
-      key: 'rzp_test_FjzUpnjxof6pQr', 
+      key: 'rzp_test_Bei5VTuZ2Tb1qg', 
       image: 'https://i.imgur.com/FApqk3D.jpeg',
       // prefill: {
       //   name: this.form.value.Name,
@@ -165,7 +167,7 @@ export class ProductCheckoutComponent implements OnInit{
       },
       handler: (response: any) => {
         console.log('Payment Successful:', response);
-        alert('Payment Successful!');
+        this.alertservice.default('Payment Successful!');
         this.router.navigate(['/products']);
       }
     }

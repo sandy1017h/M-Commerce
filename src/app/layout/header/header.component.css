@@ -177,6 +177,7 @@
   width: 100%;
   background-color: transparent;
   color: #1d4828 !important;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .search-input:focus {

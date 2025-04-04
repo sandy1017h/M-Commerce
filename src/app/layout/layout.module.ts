@@ -7,6 +7,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,6 +24,9 @@ import { MatCardModule } from '@angular/material/card';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
+    MatTooltipModule,
+    BrowserModule,
+    FormsModule,
   ],
   exports:[
     HeaderComponent,

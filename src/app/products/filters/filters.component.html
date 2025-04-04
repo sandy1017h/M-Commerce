@@ -1,11 +1,11 @@
 <div class="filter-container">
-    <div class="filter-header mb-5 mt-3">
+    <div class="filter-header">
         <span style="font-family: Inter, -apple-system, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 500;">
-            Filters
+            <b style="font-size: 25px;">*Filters</b>
         </span>
     </div>
     <div class="filter-section">
-        <h3>Categories</h3>
+        <h3 style="font-family: system-ui;">Categories</h3>
         <div class="select-check-container">
             <p *ngFor="let category of categories$|async">
                 <mat-checkbox class="app-checkbox" (change)="toggleCategory(category.id)">{{category.name}}</mat-checkbox>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="filter-section">
-        <h3>Brands</h3>
+        <h3 style="font-family: system-ui;">Brands</h3>
         <div class="select-check-container">
             <p *ngFor="let brand of brands$|async">
                 <mat-checkbox (change)="toggleBrand(brand.id)">{{brand.name}}</mat-checkbox>
